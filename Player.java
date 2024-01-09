@@ -5,16 +5,16 @@ import java.util.*;
 
 public class Player {
   DConsole dc;
-  char controlUp;
-  char controlLeft;
-  char controlDown;
-  char controlRight;
-  char controlSelect;
+  int controlUp;
+  int controlLeft;
+  int controlDown;
+  int controlRight;
+  int controlSelect;
   int x;
   int y;
   int size;
 
-  public Player(DConsole dc, char up, char left, char down, char right, char select) {
+  public Player(DConsole dc, int up, int left, int down, int right, int select) {
     this.size = 40;
     this.x = dc.getWidth() / 2;
     this.y = dc.getHeight() / 2;
@@ -86,22 +86,22 @@ public class Player {
   }
 
   public char getUpCtrl() {
-    return this.controlUp;
+    return (char)this.controlUp;
   }
 
   public char getLeftCtrl() {
-    return this.controlLeft;
+    return (char)this.controlLeft;
   }
 
   public char getDownCtrl() {
-    return this.controlDown;
+    return (char)this.controlDown;
   }
 
   public char getRightCtrl() {
-    return this.controlRight;
+    return (char)this.controlRight;
   }
 
   public char getSelectCtrl() {
-    return this.controlSelect;
+    return (char)this.controlSelect;
   }
 }
