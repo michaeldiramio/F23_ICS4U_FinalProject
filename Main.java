@@ -1,9 +1,14 @@
 import DLibX.*;
+import java.awt.*;
+import java.util.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		DConsole dc = new DConsole(450, 300);
+    DConsole dc = new DConsole(900, 600);
+    ArrayList<baseGame> games = new ArrayList<baseGame>();
+    ArrayList<Player> players = new ArrayList<Player>();
+    Random rnd = new Random();
 		dc.setOrigin(DConsole.ORIGIN_CENTER);
 		
 		dc.fillEllipse(225, 150, 50, 50);
