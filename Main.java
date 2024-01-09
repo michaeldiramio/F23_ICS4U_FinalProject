@@ -10,6 +10,7 @@ public class Main {
     ArrayList<Player> players = new ArrayList<Player>();
     Random rnd = new Random();
 		dc.setOrigin(DConsole.ORIGIN_CENTER);
+    players.add(new Player(dc, 'w', 'a', 's', 'd', 'c'));
 		
 		dc.fillEllipse(225, 150, 50, 50);
 		dc.redraw();
