@@ -85,23 +85,81 @@ public class Player {
     this.y += val;
   }
 
-  public char getUpCtrl() {
-    return (char)this.controlUp;
+
+  //getCtrls either return the ASCII reference if it exists (num > 40) or converts it (convertCtrl())
+  public String getUpCtrl() {
+    if(this.controlUp > 40) {
+      return Character.toString((char)this.controlUp);
+    }
+    return(this.convertCtrl(controlUp));
   }
 
-  public char getLeftCtrl() {
-    return (char)this.controlLeft;
+  public String getLeftCtrl() {
+    if(this.controlLeft > 40) {
+      return Character.toString((char)this.controlLeft);
+    }
+    return(this.convertCtrl(controlLeft));
   }
 
-  public char getDownCtrl() {
-    return (char)this.controlDown;
+  public String getDownCtrl() {
+    if(this.controlDown > 40) {
+      return Character.toString((char)this.controlDown);
+    }
+    return(this.convertCtrl(controlDown));
   }
 
-  public char getRightCtrl() {
-    return (char)this.controlRight;
+  public String getRightCtrl() {
+    if(this.controlRight > 40) {
+      return Character.toString((char)this.controlRight);
+    }
+    return(this.convertCtrl(controlRight));
   }
 
-  public char getSelectCtrl() {
-    return (char)this.controlSelect;
+  public String getSelectCtrl() {
+    if(this.controlSelect > 40) {
+      return Character.toString((char)this.controlSelect);
+    }
+    return(this.convertCtrl(controlSelect));
+  }
+
+  //Converts keycodes that do not have a proper ASCII representation
+  public String convertCtrl(int ctrl) {
+    switch(ctrl) {
+      case 38:
+        return "UP ARROW";
+
+      case 37:
+        return "LEFT ARROW";
+
+      case 39:
+        return "RIGHT ARROW";
+
+      case 40:
+        return "UP ARROW";
+
+      case 16:
+        return "SHIFT";
+
+      case 13:
+        return "ENTER";
+
+      case 8:
+        return "BACKSPACE";
+
+      case 17:
+        return "CONTROL";
+
+      case 18:
+        return "ALT";
+
+      case 9:
+        return "TAB";
+
+      case 20:
+        return "CAPSLOCK";
+
+      default: //keycode not accounted for
+        return "ERROR CODE: " + ctrl;
+    }
   }
 }
