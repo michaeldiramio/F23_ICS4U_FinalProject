@@ -15,8 +15,6 @@ public abstract class baseGame {
     return winner; //super.winner to set winner
   }
 
-  public abstract void initialize(Player p1, Player p2);
-
   public abstract void run();
 
 }
