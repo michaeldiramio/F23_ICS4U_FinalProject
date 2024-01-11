@@ -1,4 +1,4 @@
-import DLibX.*;
+/*import DLibX.*;
 import java.awt.Color;
 import java.util.Scanner;
 
@@ -48,4 +48,4 @@ this.dc.filllRect(1000,700,450,300);
 	dc.redraw();
 }
 
-}
+}*/
