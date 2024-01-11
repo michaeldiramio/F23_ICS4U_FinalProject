@@ -11,7 +11,6 @@ public class Main {
     Random rnd = new Random();
 		dc.setOrigin(DConsole.ORIGIN_CENTER);
 
-    System.out.println("Test test test");
     
     players.add(new Player(dc, 87, 65, 83, 68, 69));
     players.add(new Player(dc, 38, 37, 40, 39, 13));
