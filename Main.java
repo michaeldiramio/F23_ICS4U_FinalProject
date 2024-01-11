@@ -10,6 +10,7 @@ public class Main {
   Random rnd = new Random();
   
 	public static void main(String[] args) {
+
     Main m = new Main();
     
 		m.initialize();
