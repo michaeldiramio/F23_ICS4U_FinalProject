@@ -15,9 +15,9 @@ public class CircleGame extends baseGame {
     this.dc = dc;
   }
   
-  public void initialize (Player p1, Player p2){
-    
-  }
+			public void initialize (){
+
+			}
   
   public void run(){
     dc.drawEllipse(50,50,50,50);
