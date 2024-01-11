@@ -20,7 +20,8 @@ public class ClickGame extends baseGame {
   }
   
   public void run(){
-    dc.drawEllipse(50,50,50,50);
+    dc.drawEllipse(100,300,50,50);
+    dc.drawEllipse(300,300,50,50);
     dc.redraw();
   }
   
