@@ -39,12 +39,12 @@ public class GrabOrb extends baseGame {
     int playy = 300;
     int playx2 = 450;
     int playy2 = 300;
-    
+    this.run();
   }
 
   public void run() {
-    while (true) { 
     System.out.println("GrabOrb Started");
+    while (true) { 
       dc.clear();
      //orb 
     dc.fillEllipse(x,y,50,50);
