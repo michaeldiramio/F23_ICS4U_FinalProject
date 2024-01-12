@@ -25,7 +25,7 @@ public class Main {
 
     //add games
     this.games.add(new CircleGame (this.dc, this.players.get(0), this.players.get(1)));
-
+    this.games.add(new GrabOrb (this.dc, this.players.get(0), this.players.get(1)));
     //run game loop
     System.out.println("Game initialized -- Running main loop");
     this.runGame();
