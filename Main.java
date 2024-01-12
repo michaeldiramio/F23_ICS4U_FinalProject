@@ -4,10 +4,10 @@ import java.util.*;
 
 public class Main {
   
-  DConsole dc = new DConsole(900, 600);
-  ArrayList<baseGame> games = new ArrayList<baseGame>();
-  ArrayList<Player> players = new ArrayList<Player>();
-  Random rnd = new Random();
+  private DConsole dc = new DConsole(900, 600);
+  private ArrayList<baseGame> games = new ArrayList<baseGame>();
+  private ArrayList<Player> players = new ArrayList<Player>();
+  private Random rnd = new Random();
   
 	public static void main(String[] args) {
 
@@ -25,7 +25,6 @@ public class Main {
     this.players.add(new Player(this.dc, 38, 37, 40, 39, 16));
 
     //add games
-    //this.games.add(new CircleGame (this.dc, this.players.get(0), this.players.get(1)));
 
     //run game loop
     System.out.println("Game initialized -- Running main loop");
@@ -44,10 +43,16 @@ public class Main {
       } if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
         this.games.get(sc.nextInt()).initialize();
       }
+
+      
       
       this.dc.redraw();
       this.dc.pause(20);
     }
+  }
+
+  public void pickGame() {
+    
   }
 
   public void controlsMenu() {
