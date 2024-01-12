@@ -47,9 +47,7 @@ public class Main {
       } if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
         this.games.get(sc.nextInt()).initialize();
       }
-      if(this.dc.isKeyPressed('p')) {
-        testGame.initialize();
-      }
+      
       
       this.dc.redraw();
       this.dc.pause(20);
