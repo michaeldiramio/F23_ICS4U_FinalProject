@@ -1,4 +1,4 @@
-import DLibX.DConsole;
+/*import DLibX.DConsole;
 import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.util.*;
@@ -24,4 +24,4 @@ public class CircleGame extends baseGame {
     dc.redraw();
   }
   
-}
+}*/
