@@ -1,3 +1,4 @@
+/*
 import DLibX.DConsole;
 import java.awt.Color;
 import java.awt.geom.AffineTransform;
@@ -25,3 +26,4 @@ public class CircleGame extends baseGame {
   }
   
 }
+*/
