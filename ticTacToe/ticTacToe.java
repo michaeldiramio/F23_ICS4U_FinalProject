@@ -32,6 +32,8 @@ public class ticTacToe extends baseGame {
       }
       xPosition += (i * xPosition);
     }
+
+    this.run();
   }
   
   public void run(){
@@ -42,11 +44,19 @@ public class ticTacToe extends baseGame {
       int mouseX = dc.getMouseXPosition();
       int mouseY = dc.getMouseYPosition();
 
-
-      
-
-
-      
+      for(int i = 0; i < gameBoard.length; i++){
+        for(int j = 0; j < gameBoard[i].length; j++){
+          if(mouseX >= (gameBoard[i][j].getXPosition() - gameBoard[i][j].getSize()/2) 
+             && mouseX <= (gameBoard[i][j].getXPosition() + gameBoard[i][j].getSize()/2) 
+             && mouseY >= (gameBoard[i][j].getYPosition() - gameBoard[i][j].getSize()/2) 
+             && mouseY <= (gameBoard[i][j].getYPosition() + gameBoard[i][j].getSize()/2)){
+            gameBoard[i][j].changeOpacity();
+            if(dc.isMousePressed){
+              gameBoard[i][j].setState(activePlayer);
+            }
+          }
+        }
+      }      
       
     }
     
@@ -57,12 +67,21 @@ public class ticTacToe extends baseGame {
     dc.redraw();
   }
 
-  public void checkForWinner(){
+  public void checkWinVertical(){
     
+  }
+
+  public void checkWinHorizontal(){
+
+  }
+
+  public void checkWinDiagonal(){
+
   }
 
   public void drawBackground(){
     
   }
+  
   
 }

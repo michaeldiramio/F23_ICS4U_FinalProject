@@ -25,7 +25,7 @@ public class gridSquare {
     dc.fillRect(x, y, size, size);
   }
 
-  public void setOpacity(int val) {
+  public void changeOpacity(int val) {
     this.opacity = val;
   }
 
@@ -41,11 +41,16 @@ public class gridSquare {
     }
   
   }
-  
-  public boolean isMouseTouching(int mouseX, int mouseY){
-    if(mouseX >= (x - size/2) && mouseX <= (x + size/2) && mouseY >= (y - size/2) && mouseY <= (y + size/2)){
-      return true;
-    }
-    return false;
+
+  public int getXPosition() {
+    return this.x;
+  }
+
+  public int getYPosition() {
+    return this.y;
+  }
+
+  public int getSize() {
+    return this.size;
   }
 }
