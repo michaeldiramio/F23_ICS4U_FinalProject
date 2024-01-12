@@ -50,11 +50,12 @@ public class ticTacToe extends baseGame {
              && mouseX <= (gameBoard[i][j].getXPosition() + gameBoard[i][j].getSize()/2) 
              && mouseY >= (gameBoard[i][j].getYPosition() - gameBoard[i][j].getSize()/2) 
              && mouseY <= (gameBoard[i][j].getYPosition() + gameBoard[i][j].getSize()/2)){
-            gameBoard[i][j].changeOpacity();
-            if(dc.isMousePressed){
+            gameBoard[i][j].setOpacity(25);
+            if(dc.isMouseButton(1)){
               gameBoard[i][j].setState(activePlayer);
             }
           }
+          gameBoard[i][j].setOpacity(0);
         }
       }      
       

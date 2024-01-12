@@ -25,7 +25,7 @@ public class gridSquare {
     dc.fillRect(x, y, size, size);
   }
 
-  public void changeOpacity(int val) {
+  public void setOpacity(int val) {
     this.opacity = val;
   }
 
