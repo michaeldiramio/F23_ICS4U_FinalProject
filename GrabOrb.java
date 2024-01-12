@@ -30,7 +30,7 @@ public class GrabOrb extends baseGame {
     return winner; //super.winner to set winner
   }
 
-  public void initialize (Player p1, Player p2){
+  public void initialize (){
     int x = r.nextInt(600) + 100;
     int y = r.nextInt(300) + 100;
     int points = 0;
@@ -44,6 +44,7 @@ public class GrabOrb extends baseGame {
 
   public void run() {
     while (true) { 
+    System.out.println("GrabOrb Started");
       dc.clear();
      //orb 
     dc.fillEllipse(x,y,50,50);
