@@ -56,7 +56,12 @@ public class Main {
   }
 
   public void pickGame() {
-    
+    /*int gameNum = rnd.nexstInt(this.games.size());
+    this.games.get(gameNum).initialize();
+    int winner = this.games.getWinner();
+    if(winner == 1) {
+      
+    }*/
   }
 
   public void controlsMenu() {
@@ -125,3 +130,20 @@ public class Main {
     }
   }
 }
+
+/*
+
+IGNORE THIS
+
+dc.drawLine(400, 60, 400, 260);
+if(mouseX <= 420
+  && mouseX >= 380
+  && mouseY >= 60
+  && mouseY <= 260
+  && dc.isMouseButton(1)) {
+    ballSliderY = mouseY;
+  }
+dc.fillEllipse(400, ballSliderY, 20, 20);
+dc.drawString(ballCount, 430, ballSliderY);
+ballCount = (ballSliderY - 40) / 20;  //1-11
+*/
