@@ -31,14 +31,14 @@ public class GrabOrb extends baseGame {
   }
 
   public void initialize (){
-    int x = r.nextInt(600) + 100;
-    int y = r.nextInt(300) + 100;
-    int points = 0;
-    int points2 = 0;
-    int playx = 450;
-    int playy = 300;
-    int playx2 = 450;
-    int playy2 = 300;
+    x = r.nextInt(600) + 100;
+    y = r.nextInt(300) + 100;
+    points = 0;
+    points2 = 0;
+    playx = 450;
+    playy = 300;
+    playx2 = 450;
+    playy2 = 300;
     this.run();
   }
 
@@ -95,9 +95,11 @@ public class GrabOrb extends baseGame {
       }
       if (points >= 10) {
         dc.drawString("Player One Won!!!!", 450, 300);
+        System.out.println("test");
         break;
         } else if (points2 >=10) {
           dc.drawString("Player Two Won!!!!", 450, 300); 
+        System.out.println("test");
         break;
       }
       dc.redraw();
