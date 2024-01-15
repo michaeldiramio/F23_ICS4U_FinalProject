@@ -26,7 +26,20 @@ public class DiceGame extends baseGame {
 		boolean start = true;
 		while(start){
 
+			int ballCount = 3;
+			int ballSliderY = 60;
 			
+			dc.drawLine(400, 60, 400, 260);
+			if(mouseX <= 420
+					&& mouseX >= 380
+					&& mouseY >= 60
+					&& mouseY <= 260
+					&& dc.isMouseButton(1)) {
+							ballSliderY = mouseY;
+					}
+			dc.fillEllipse(400, ballSliderY, 20, 20);
+			dc.drawString(ballCount, 430, ballSliderY);
+			ballCount = (ballSliderY - 40) / 20;  //1-11
 
 			dc.setOrigin(DConsole.ORIGIN_CENTER);
 		dc.setPaint(new Color(58, 206, 250));
