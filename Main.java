@@ -26,6 +26,8 @@ public class Main {
     //add games
     this.games.add(new CircleGame (this.dc, this.players.get(0), this.players.get(1)));
 
+			this.games.add(new DiceGame (this.dc, this.players.get(0), this.players.get(1)));
+
     //run game loop
     System.out.println("Game initialized -- Running main loop");
     this.runGame();
@@ -40,6 +42,9 @@ public class Main {
       if(this.dc.isKeyPressed('C')) {
         this.controlsMenu();
       }
+					if(this.dc.isKeyPressed('L')) {
+							this.games.get(1).initialize();
+					}
       
       this.dc.redraw();
     }
