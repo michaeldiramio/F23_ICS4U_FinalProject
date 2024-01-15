@@ -4,10 +4,10 @@ import java.util.*;
 
 public class Main {
   
-  DConsole dc = new DConsole(900, 600);
-  ArrayList<baseGame> games = new ArrayList<baseGame>();
-  ArrayList<Player> players = new ArrayList<Player>();
-  Random rnd = new Random();
+  private DConsole dc = new DConsole(900, 600);
+  private ArrayList<baseGame> games = new ArrayList<baseGame>();
+  private ArrayList<Player> players = new ArrayList<Player>();
+  private Random rnd = new Random();
   
 	public static void main(String[] args) {
 
@@ -26,10 +26,12 @@ public class Main {
 
     //add games
     this.games.add(new GrabOrb (this.dc, this.players.get(0), this.players.get(1)));
-    this.games.add(new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
-    this.games.add(new ticTacToe (this.dc, rnd, this.players.get(0), this.players.get(1)));
-    //run game loop
+    this.games.add( new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new pickKey (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new DragRace (this.dc, this.players.get(0), this.players.get(1))); 
+    this.games.add(new ticTacToe (this.dc, this.rnd, this.players.get(0), this.players.get(1))); 
     
+    //run game loop
     System.out.println("Game initialized -- Running main loop");
     this.runGame();
   }
@@ -44,12 +46,16 @@ public class Main {
       if(this.dc.isKeyPressed('C')) {
         this.controlsMenu();
       } if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
-        this.games.get(2).initialize();
+        this.games.get(sc.nextInt()).initialize();
       }
       
       this.dc.redraw();
       this.dc.pause(20);
     }
+  }
+
+  public void pickGame() {
+    
   }
 
   public void controlsMenu() {

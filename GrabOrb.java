@@ -44,6 +44,7 @@ public class GrabOrb extends baseGame {
 
   public void run() {
     while (true) { 
+    System.out.println("GrabOrb Started");
       dc.clear();
      //orb 
     dc.fillEllipse(x,y,50,50);
