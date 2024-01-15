@@ -25,12 +25,11 @@ public class Main {
     this.players.add(new Player(this.dc, 38, 37, 40, 39, 16));
 
     //add games
-
-    this.games.add(new CircleGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new GrabOrb (this.dc, this.players.get(0), this.players.get(1)));
-    this.games.add( new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
-   //run game loop
-
+    this.games.add(new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new ticTacToe (this.dc, rnd, this.players.get(0), this.players.get(1)));
+    //run game loop
+    
     System.out.println("Game initialized -- Running main loop");
     this.runGame();
   }
@@ -45,10 +44,7 @@ public class Main {
       if(this.dc.isKeyPressed('C')) {
         this.controlsMenu();
       } if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
-        this.games.get(sc.nextInt()).initialize();
-      }
-      if(this.dc.isKeyPressed('p')) {
-        testGame.initialize();
+        this.games.get(2).initialize();
       }
       
       this.dc.redraw();
