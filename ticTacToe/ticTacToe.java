@@ -23,7 +23,7 @@ public class ticTacToe extends baseGame {
   }
   
   public void initialize (){
-    System.out.println("Game initialized -- Running tictactoe");
+    System.out.println("Initializing tictactoe");
     
     this.activePlayer = this.randGen.nextInt(2);
     int xPosition = 150;
@@ -35,7 +35,6 @@ public class ticTacToe extends baseGame {
       for(int j = 0; j < gameBoard[i].length; j++){
         yPosition += 150;
         gameBoard[i][j] = new gridSquare(dc, xPosition, yPosition, 100);
-        System.out.println("new Square");
       }
       yPosition = 0;
     }
@@ -168,7 +167,6 @@ public class ticTacToe extends baseGame {
     } else if (p2Squares == 3){
       super.winner = 2;
     } 
-
     
     // --- Check Diagonal 2 / ---
     p1Squares = 0;
@@ -188,10 +186,8 @@ public class ticTacToe extends baseGame {
       super.winner = 2;
     }
 
-    
     // Set game winner / End game
     if(super.winner != 0){
-      System.out.println(super.winner);
       gameOver = true;
     }
   }  
