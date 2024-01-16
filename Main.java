@@ -189,10 +189,23 @@ public class Main {
         mapSquares.get(i).draw();
       }
 
-
+      //draw player icon full size if different coordinates, otherwise p1 in top-left corner p2 bottom-right at half size
+      if(this.players.get(0).getBoardX() == this.players.get(1).getBoardX() && this.players.get(0).getBoardY() == this.players.get(1).getBoardY()) { //same spot
+        this.dc.setPaint(Color.RED);
+        this.players.get(0).drawShared(-15);
+        this.dc.setPaint(Color.BLUE);
+        this.players.get(1).drawShared(15);
+      } else {
+        this.dc.setPaint(Color.RED);
+        this.players.get(0).draw();
+        this.dc.setPaint(Color.BLUE);
+        this.players.get(1).draw();
+      }
       
       this.dc.redraw();
       this.dc.pause(20);
     }
   }
+
+  
 }

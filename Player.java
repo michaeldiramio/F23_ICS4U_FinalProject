@@ -4,16 +4,18 @@ import java.awt.geom.AffineTransform;
 import java.util.*;
 
 public class Player {
-  DConsole dc;
-  int controlUp;
-  int controlLeft;
-  int controlDown;
-  int controlRight;
-  int controlSelect;
-  int x;
-  int y;
-  int size;
-  int score;
+  private DConsole dc;
+  private int controlUp;
+  private int controlLeft;
+  private int controlDown;
+  private int controlRight;
+  private int controlSelect;
+  private int x;
+  private int y;
+  private int size;
+  private int score;
+  private int boardX = 60;
+  private int boardY = 120;
 
   public Player(DConsole dc, int up, int left, int down, int right, int select) {
     this.size = 40;
@@ -166,5 +168,26 @@ public class Player {
 
   public void scoreUp() {
     this.score++;
+  }
+
+  //Draw full size on gameBoard -- NOT FOR MINIGAMES
+  public void draw() {
+    //this.dc.drawImage(this.icon, this.boardX, this.boardY);
+    this.dc.fillEllipse(this.boardX, this.boardY, this.size, this.size);
+  }
+
+  //Draw half-size on gameBoard -- NOT FOR MINIGAMES
+  //val == offset in square (-15 for p1, +15 for p2)
+  public void drawShared(int val) {
+    //this.dc.drawImage(this.icon, this.boardX + val);
+    this.dc.fillEllipse(this.boardX + val, this.boardY + val, this.size / 2, this.size / 2);
+  }
+
+  public int getBoardX() {
+    return this.boardX;
+  }
+
+  public int getBoardY() {
+    return this.boardY;
   }
 }
