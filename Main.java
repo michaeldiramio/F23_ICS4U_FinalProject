@@ -48,10 +48,8 @@ public class Main {
       //temporary way to access controls screen
       if(this.dc.isKeyPressed('C')) {
         this.controlsMenu();
-      } else if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
+      } if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
         this.games.get(sc.nextInt()).initialize();
-      } else if(this.dc.isKeyPressed('R')) {
-        this.pickGame();
       }
       
       this.dc.redraw();
@@ -59,20 +57,13 @@ public class Main {
     }
   }
 
-  //Pick random number, run the minigame, determine winner and increase score
-  //need to add displayed win screen
-  //not entirely sure if the winner is being stored correctly, replit is dumb and wont load.
   public void pickGame() {
-    int gameNum = rnd.nextInt(this.games.size());
+    /*int gameNum = rnd.nexstInt(this.games.size());
     this.games.get(gameNum).initialize();
-    int winner = this.games.get(gameNum).getWinner();
+    int winner = this.games.getWinner();
     if(winner == 1) {
-      System.out.println("Player 1 won");
-      this.players.get(0).scoreUp();
-    } else {
-      System.out.println("Player 2 won");
-      this.players.get(1).scoreUp();
-    }
+      
+    }*/
   }
 
   public void controlsMenu() {
