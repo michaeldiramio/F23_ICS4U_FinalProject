@@ -13,6 +13,7 @@ public class Player {
   int x;
   int y;
   int size;
+  int score;
 
   public Player(DConsole dc, int up, int left, int down, int right, int select) {
     this.size = 40;
@@ -161,5 +162,9 @@ public class Player {
       default: //keycode not accounted for
         return "ERROR CODE: " + ctrl;
     }
+  }
+
+  public void scoreUp() {
+    this.score++;
   }
 }
