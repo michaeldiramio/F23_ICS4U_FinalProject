@@ -21,8 +21,16 @@ public class gridSquare {
   }
 
   public void drawSquare() {
-    dc.setPaint(new Color(255, 255, 255, opacity));
-    dc.fillRect(x, y, size, size);
+    if(this.state == 0) {
+      dc.setPaint(new Color(0, 0, 0, opacity));
+      dc.fillRect(x, y, size, size);
+    } else if(this.state == 1){
+      dc.setPaint(Color.RED);
+      dc.fillEllipse(x, y, size, size);
+    } else if(this.state == 2){
+      dc.setPaint(Color.BLUE);
+      dc.fillRect(x, y, size, size);
+    }
   }
 
   public void setOpacity(int val) {
@@ -31,15 +39,14 @@ public class gridSquare {
 
   public void setState(int activePlayer){
     if(activePlayer == 0){
-      dc.setPaint(Color.RED);
-      dc.fillEllipse(x, y, size, size);
       this.state = 1;
     } else{
-      dc.setPaint(Color.BLUE);
-      dc.fillRect(x, y, size, size);
       this.state = 2;
     }
-  
+  }
+
+  public int getState() {
+    return this.state;
   }
 
   public int getXPosition() {

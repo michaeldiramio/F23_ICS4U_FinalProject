@@ -26,10 +26,13 @@ public class Main {
 
     //add games
     this.games.add(new GrabOrb (this.dc, this.players.get(0), this.players.get(1)));
-    this.games.add( new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new pickKey (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new DragRace (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new MasherGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new RPS (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new ticTacToe (this.dc, this.rnd, this.players.get(0), this.players.get(1))); 
+    this.games.add(new DontGrabOrbGame (this.dc, this.players.get(0), this.players.get(1)));
     
     //run game loop
     System.out.println("Game initialized -- Running main loop");
@@ -45,19 +48,31 @@ public class Main {
       //temporary way to access controls screen
       if(this.dc.isKeyPressed('C')) {
         this.controlsMenu();
-      } if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
+      } else if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
         this.games.get(sc.nextInt()).initialize();
+      } else if(this.dc.isKeyPressed('R')) {
+        this.pickGame();
       }
-
-      
       
       this.dc.redraw();
       this.dc.pause(20);
     }
   }
 
+  //Pick random number, run the minigame, determine winner and increase score
+  //need to add displayed win screen
+  //not entirely sure if the winner is being stored correctly, replit is dumb and wont load.
   public void pickGame() {
-    
+    int gameNum = rnd.nextInt(this.games.size());
+    this.games.get(gameNum).initialize();
+    int winner = this.games.get(gameNum).getWinner();
+    if(winner == 1) {
+      System.out.println("Player 1 won");
+      this.players.get(0).scoreUp();
+    } else {
+      System.out.println("Player 2 won");
+      this.players.get(1).scoreUp();
+    }
   }
 
   public void controlsMenu() {
@@ -126,3 +141,20 @@ public class Main {
     }
   }
 }
+
+/*
+
+IGNORE THIS
+
+dc.drawLine(400, 60, 400, 260);
+if(mouseX <= 420
+  && mouseX >= 380
+  && mouseY >= 60
+  && mouseY <= 260
+  && dc.isMouseButton(1)) {
+    ballSliderY = mouseY;
+  }
+dc.fillEllipse(400, ballSliderY, 20, 20);
+dc.drawString(ballCount, 430, ballSliderY);
+ballCount = (ballSliderY - 40) / 20;  //1-11
+*/
