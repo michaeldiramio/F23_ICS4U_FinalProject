@@ -4,10 +4,10 @@ import java.util.*;
 
 public class Main {
   
-  DConsole dc = new DConsole(900, 600);
-  ArrayList<baseGame> games = new ArrayList<baseGame>();
-  ArrayList<Player> players = new ArrayList<Player>();
-  Random rnd = new Random();
+  private DConsole dc = new DConsole(900, 600);
+  private ArrayList<baseGame> games = new ArrayList<baseGame>();
+  private ArrayList<Player> players = new ArrayList<Player>();
+  private Random rnd = new Random();
   
 	public static void main(String[] args) {
 
@@ -26,11 +26,15 @@ public class Main {
 
     //add games
     this.games.add(new GrabOrb (this.dc, this.players.get(0), this.players.get(1)));
-    this.games.add( new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new pickKey (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new DragRace (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new pickKey (this.dc, this.players.get(0), this.players.get(1)));
-   //run game loop
+    this.games.add(new RPS (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new ticTacToe (this.dc, this.rnd, this.players.get(0), this.players.get(1))); 
+    this.games.add(new DontGrabOrbGame (this.dc, this.players.get(0), this.players.get(1)));
+    
+    //run game loop
     System.out.println("Game initialized -- Running main loop");
     this.runGame();
   }
@@ -51,6 +55,15 @@ public class Main {
       this.dc.redraw();
       this.dc.pause(20);
     }
+  }
+
+  public void pickGame() {
+    /*int gameNum = rnd.nexstInt(this.games.size());
+    this.games.get(gameNum).initialize();
+    int winner = this.games.getWinner();
+    if(winner == 1) {
+      
+    }*/
   }
 
   public void controlsMenu() {
@@ -119,3 +132,20 @@ public class Main {
     }
   }
 }
+
+/*
+
+IGNORE THIS
+
+dc.drawLine(400, 60, 400, 260);
+if(mouseX <= 420
+  && mouseX >= 380
+  && mouseY >= 60
+  && mouseY <= 260
+  && dc.isMouseButton(1)) {
+    ballSliderY = mouseY;
+  }
+dc.fillEllipse(400, ballSliderY, 20, 20);
+dc.drawString(ballCount, 430, ballSliderY);
+ballCount = (ballSliderY - 40) / 20;  //1-11
+*/
