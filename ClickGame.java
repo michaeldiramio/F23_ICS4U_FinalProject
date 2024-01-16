@@ -28,7 +28,7 @@ public class ClickGame extends baseGame {
   public void run() {
     //setup stuff
     Font f = dc.getFont(); // the writing setup
-    dc.setFont(new Font("DejaVu Sans", Font.BOLD, 25));
+    dc.setFont(new Font("DejaVu Sans", Font.BOLD, 20));
     long startTime = System.currentTimeMillis();
     long elapsedTime = 0;
 
@@ -47,7 +47,7 @@ public class ClickGame extends baseGame {
       dc.fillEllipse(675, 360, 50, 50);
       dc.drawString("Player Two Click Count" + player2count, 675, 300);
       dc.drawString("Player One Click Count " + player1count, 225, 300);
-      dc.drawString("who ever can click the most wins player 1 click 1 player 2 clcik 0", 450, 100);
+      dc.drawString("who ever can click the most wins player 1 click 1 player 2 click 0", 450, 100);
       // clcik points for each player
       if (this.dc.isKeyPressed('1') && keycount1 == 0) {
         player1count = player1count + 1;
