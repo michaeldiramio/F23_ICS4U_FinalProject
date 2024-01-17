@@ -38,6 +38,8 @@ public class CoverScreen extends baseGame {
 
     while (elapsedTime - startTime < 10000) {
 // draw the map
+      dc.setPaint(new Color(73, 68, 67));
+      dc.fillRect(450, 300, 900, 600);
       dc.fillEllipse(player1.getX(), player1.getY(), 50, 50);
       dc.fillEllipse(player2.getX(), player2.getY(), 50, 50);
       elapsedTime = System.currentTimeMillis();
@@ -45,11 +47,36 @@ public class CoverScreen extends baseGame {
       if (player1.upPressed()) {
         player1.changeY(5);
       }
-      if (player1.upPressed()) {
-          player1.changeY(5);
+      if (player1.downPressed()) {
+          player1.changeY(-5);
         }
+      if (player1.leftPressed()) {
+        player1.changeX(-5);
       }
-    
+      if (player1.rightPressed()) {
+        player1.changeX(-5);
+      }
+      }
+    if (Y < 0) {
+      changeY= 310; 
+    }
+
+    if (Y > 275) { //top and bottem walls
+      changeY= -3; 
+    }
+
+    if (Y < 15) { 
+      changeY= 3; 
+
+    }
+
+    if (X > 425) { // for wall and points
+      changeY= -3; 
+    }
+
+    if (X < 15) { 
+      changeY= 3; 
+    }
     
     
     //winner conditions
