@@ -45,6 +45,9 @@ public class Main {
     Scanner sc = new Scanner(System.in);
     while(true) {
       this.dc.clear();
+      this.dc.setFont(new Font("Dialog", Font.PLAIN, 12));
+      this.dc.setPaint(Color.BLACK);
+      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
       this.dc.fillEllipse(225, 150, 50, 50); //temp visual
   
       //temporary way to access controls screen
@@ -54,6 +57,8 @@ public class Main {
         this.games.get(sc.nextInt()).initialize();
       } else if(this.dc.isKeyPressed('R')) {
         this.pickGame();
+      } else if(this.dc.isKeyPressed('B')) {
+        this.playGame();
       }
       
       this.dc.redraw();
@@ -64,7 +69,7 @@ public class Main {
   //Pick random number, run the minigame, determine winner and increase score
   //need to add displayed win screen
   //not entirely sure if the winner is being stored correctly, replit is dumb and wont load.
-  public void pickGame() {
+  public int pickGame() {
     int gameNum = rnd.nextInt(this.games.size());
     this.games.get(gameNum).initialize();
     int winner = this.games.get(gameNum).getWinner();
@@ -75,6 +80,7 @@ public class Main {
       System.out.println("Player 2 won");
       this.players.get(1).scoreUp();
     }
+    return winner;
   }
 
   public void controlsMenu() {
@@ -142,21 +148,84 @@ public class Main {
       this.dc.setOrigin(DConsole.ORIGIN_CENTER);
     }
   }
-}
 
-/*
 
-IGNORE THIS
+  //game in-progress
+  public void playGame() {
+    boolean playing = true;
+    
+  
+    //make the squares for gameboard
+    int counter = 0;
+    int rowNum = 0;
+    Player p1 = this.players.get(0);
+    Player p2 = this.players.get(1);
+    ArrayList<mapSquare> mapSquares = new ArrayList<mapSquare>();
+ 
+    //draw game squares
+    //draws 4 rows of 14 with a connecting square to go downwards
+    //squares are stored in order in ArrayList mapSquares to allow for easy movement
+    //counter represents square # in row (0-13)
+    for(int i = 0; i < 13 * 4 + 4; i++) {
+      if(counter >= 14 && rowNum % 2 == 0) { //right-side down connecting square
+        mapSquares.add(new mapSquare(this.dc, 840, rowNum * 120 + 180));
+        counter = 0;
+        rowNum++;
+      } else if(counter >= 14) { //left-side down connecting square
+        mapSquares.add(new mapSquare(this.dc, 60, rowNum * 120 + 180));
+        counter = 0;
+        rowNum++;
+      }
+      //draw average square
+      mapSquares.add(new mapSquare(this.dc, counter * 60 + 60, rowNum * 120 + 120));
+      counter++;
+    }
+    
+    while(playing) {
+      this.dc.clear();
+      this.dc.setFont(new Font("Dialog", Font.PLAIN, 12));
+      this.dc.setPaint(Color.BLACK);
+      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
 
-dc.drawLine(400, 60, 400, 260);
-if(mouseX <= 420
-  && mouseX >= 380
-  && mouseY >= 60
-  && mouseY <= 260
-  && dc.isMouseButton(1)) {
-    ballSliderY = mouseY;
+      //draw image origin middle of screen
+      this.dc.drawImage("gameMap/background.png", 450, 300);
+      //draw game squares
+      for(int i = 0; i < mapSquares.size(); i++) {
+        mapSquares.get(i).draw();
+      }
+
+      //draw player icon full size if different coordinates, otherwise p1 in top-left corner p2 bottom-right at half size
+      if(this.players.get(0).getBoardX() == this.players.get(1).getBoardX() && this.players.get(0).getBoardY() == this.players.get(1).getBoardY()) { //same spot
+        this.dc.setPaint(Color.RED);
+        this.players.get(0).drawShared(-15);
+        this.dc.setPaint(Color.BLUE);
+        this.players.get(1).drawShared(15);
+      } else {
+        this.dc.setPaint(Color.RED);
+        this.players.get(0).draw();
+        this.dc.setPaint(Color.BLUE);
+        this.players.get(1).draw();
+      }
+      this.dc.redraw();
+      this.dc.pause(5000);
+      if(this.pickGame() == 1) {
+        
+        p1.setBoardPos(p1.getBoardPos() + 1);
+        p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
+        p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
+        
+      } else {
+
+        p2.setBoardPos(p2.getBoardPos() + 1);
+        p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX());
+        p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY());
+        
+      }
+      
+      this.dc.redraw();
+      this.dc.pause(20);
+    }
   }
-dc.fillEllipse(400, ballSliderY, 20, 20);
-dc.drawString(ballCount, 430, ballSliderY);
-ballCount = (ballSliderY - 40) / 20;  //1-11
-*/
+
+  
+}
