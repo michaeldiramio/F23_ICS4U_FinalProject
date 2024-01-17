@@ -206,20 +206,23 @@ public class Main {
         this.dc.setPaint(Color.BLUE);
         this.players.get(1).draw();
       }
-      this.dc.redraw();
-      this.dc.pause(5000);
-      if(this.pickGame() == 1) {
-        
-        p1.setBoardPos(p1.getBoardPos() + 1);
-        p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
-        p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
-        
-      } else {
 
-        p2.setBoardPos(p2.getBoardPos() + 1);
-        p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX());
-        p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY());
-        
+      if(p1.selectPressed() || p2.selectPressed()) { //maybe put some dice rollhere
+
+        //Play random game and move players afterwards
+        if(this.pickGame() == 1) {
+
+          p1.setBoardPos(p1.getBoardPos() + 1);
+          p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
+          p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
+
+        } else {
+
+          p2.setBoardPos(p2.getBoardPos() + 1);
+          p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX());
+          p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY());
+
+        }
       }
       
       this.dc.redraw();
