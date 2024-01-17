@@ -53,6 +53,7 @@ public class Main {
         this.controlsMenu();
       } else if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
         this.games.get(sc.nextInt()).initialize();
+        System.out.println(this.games.get(sc.nextInt()).getWinner());
       } else if(this.dc.isKeyPressed('R')) {
         this.pickGame();
       } else if(this.dc.isKeyPressed('B')) {
@@ -67,7 +68,7 @@ public class Main {
   //Pick random number, run the minigame, determine winner and increase score
   //need to add displayed win screen
   //not entirely sure if the winner is being stored correctly, replit is dumb and wont load.
-  public void pickGame() {
+  public int pickGame() {
     int gameNum = rnd.nextInt(this.games.size());
     this.games.get(gameNum).initialize();
     int winner = this.games.get(gameNum).getWinner();
@@ -78,6 +79,7 @@ public class Main {
       System.out.println("Player 2 won");
       this.players.get(1).scoreUp();
     }
+    return winner;
   }
 
   public void controlsMenu() {
@@ -155,6 +157,8 @@ public class Main {
     //make the squares for gameboard
     int counter = 0;
     int rowNum = 0;
+    Player p1 = this.players.get(0);
+    Player p2 = this.players.get(1);
     ArrayList<mapSquare> mapSquares = new ArrayList<mapSquare>();
  
     //draw game squares
@@ -200,6 +204,16 @@ public class Main {
         this.players.get(0).draw();
         this.dc.setPaint(Color.BLUE);
         this.players.get(1).draw();
+      }
+      this.dc.redraw();
+      this.dc.pause(10000);
+      if(this.pickGame() == 1) {
+        
+        p1.setBoardPos(p1.getBoardPos() + 1);
+        p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
+        p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
+      } else {
+        
       }
       
       this.dc.redraw();

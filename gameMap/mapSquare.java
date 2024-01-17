@@ -23,6 +23,14 @@ public class mapSquare {
     this.y = val;
   }
 
+  public int getX() {
+    return this.x;
+  }
+
+  public int getY() {
+    return this.y;
+  }
+
   public void draw() {
     this.dc.drawRect(this.x, this.y, this.size, this.size);
   }

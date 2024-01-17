@@ -16,6 +16,7 @@ public class Player {
   private int score;
   private int boardX = 60;
   private int boardY = 120;
+  private int boardPos = 0;
 
   public Player(DConsole dc, int up, int left, int down, int right, int select) {
     this.size = 40;
@@ -183,11 +184,27 @@ public class Player {
     this.dc.fillEllipse(this.boardX + val, this.boardY + val, this.size / 2, this.size / 2);
   }
 
+  public void setBoardPos(int val) {
+    this.boardPos = val;
+  }
+
+  public void setBoardX(int val) {
+    this.boardX = val;
+  }
+
+  public void setBoardY(int val) {
+    this.boardY = val;
+  }
+
   public int getBoardX() {
     return this.boardX;
   }
 
   public int getBoardY() {
     return this.boardY;
+  }
+
+  public int getBoardPos() {
+    return this.boardPos;
   }
 }
