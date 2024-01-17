@@ -51,7 +51,7 @@ public class Main {
       if(this.dc.isKeyPressed('C')) {
         this.controlsMenu();
       } else if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
-        this.games.get(8).initialize();
+        this.games.get(sc.nextInt()).initialize();
       } else if(this.dc.isKeyPressed('R')) {
         this.pickGame();
       }
