@@ -70,15 +70,20 @@ public class Main {
   //need to add displayed win screen
   //not entirely sure if the winner is being stored correctly, replit is dumb and wont load.
   public int pickGame() {
+    //Reset DConsole settings
+    this.dc.clear();
+    this.dc.setFont(new Font("Dialog", Font.PLAIN, 12));
+    this.dc.setPaint(Color.BLACK);
+    this.dc.setOrigin(DConsole.ORIGIN_CENTER);
+
+    //roll & play random game
     int gameNum = rnd.nextInt(this.games.size());
     this.games.get(gameNum).initialize();
     int winner = this.games.get(gameNum).getWinner();
     if(winner == 1) {
       System.out.println("Player 1 won");
-      this.players.get(0).scoreUp();
     } else {
       System.out.println("Player 2 won");
-      this.players.get(1).scoreUp();
     }
     return winner;
   }
@@ -129,7 +134,6 @@ public class Main {
             cursorX += 400;
             keyCounter = 8;
           } if(tmp.selectPressed()) {
-            //TODO -- select control being hovered and take new input? -- May be scrapped
             if(cursorY == 540) { //"EXIT" selected -- back to main menu
               done = true;
             }
@@ -160,6 +164,8 @@ public class Main {
     int rowNum = 0;
     Player p1 = this.players.get(0);
     Player p2 = this.players.get(1);
+    int cursorPos = 0;
+    int keyCounter = 0;
     ArrayList<mapSquare> mapSquares = new ArrayList<mapSquare>();
  
     //draw game squares
@@ -176,8 +182,16 @@ public class Main {
         counter = 0;
         rowNum++;
       }
+      if(i == 55) { //last square
+        mapSquares.add(new EndSquare(this.dc, 840 - counter * 60, rowNum * 120 + 120));
+        break;
+      }
       //draw average square
-      mapSquares.add(new mapSquare(this.dc, counter * 60 + 60, rowNum * 120 + 120));
+      if(rowNum % 2 == 0)  {//add squares left->right
+        mapSquares.add(new mapSquare(this.dc, counter * 60 + 60, rowNum * 120 + 120));
+      } else { //add squares right->left
+        mapSquares.add(new mapSquare(this.dc, 840 - counter * 60, rowNum * 120 + 120));
+      }
       counter++;
     }
     
@@ -207,27 +221,78 @@ public class Main {
         p2.draw();
       }
 
-      if(p1.selectPressed() || p2.selectPressed()) { //maybe put some dice rollhere
+      this.dc.setOrigin(DConsole.ORIGIN_LEFT);
+      //labels
+      this.dc.drawString("Controls", 100, 550);
+      this.dc.drawString("Start", 400, 550);
+      this.dc.drawString("How To Play", 700, 550);
 
-        //Play random game and move players afterwards
-        if(this.pickGame() == 1) {
-
+      //detect left/right keypresses
+      if(keyCounter == 0) {
+        if((p1.rightPressed() || p2.rightPressed()) && cursorPos < 2) {
+          cursorPos++;
+          keyCounter = 8;
+        } else if((p1.leftPressed() || p2.leftPressed()) && cursorPos > 0) {
+          cursorPos--;
+          keyCounter = 8;
+        } else if(this.dc.isKeyPressed('l')) { //temp move player for testing /.
           p1.setBoardPos(p1.getBoardPos() + 1);
           p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
           p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
-
-        } else {
-
-          p2.setBoardPos(p2.getBoardPos() + 1);
-          p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX());
-          p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY());
-
+          keyCounter = 8;
         }
       }
+
+      if(keyCounter > 0) { //delaying repeat key presses
+        keyCounter--;
+      }
+
+      //draw cursor on labels at bottom of screen && check for keypresses to select hovered
+      switch(cursorPos) {
+        case 0:
+          this.dc.fillRect(75, 550, 20, 3);
+          if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
+            this.controlsMenu();
+            keyCounter = 8;
+          }
+          break;
+
+        case 1:
+          this.dc.fillRect(375, 550, 20, 3);
+          if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
+            if(this.pickGame() == 1) { //play random game and move winning player forward
+              p1.setBoardPos(p1.getBoardPos() + 1); //increase board position
+              p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX()); //new X
+              p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY()); //new Y
+
+            } else {
+              p2.setBoardPos(p2.getBoardPos() + 1); //increase bord position
+              p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX()); //new X
+              p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY()); //new Y
+
+            }
+            keyCounter = 8;
+          }
+          break;
+          
+        case 2:
+          this.dc.fillRect(675, 550, 20, 3);
+          if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
+            this.instructionsMenu();
+            keyCounter = 8;
+          }
+          break;
+      }
+      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
+      
       
       this.dc.redraw();
       this.dc.pause(20);
     }
+  }
+
+  public void instructionsMenu() { //to be made ./
+    
   }
 
   
