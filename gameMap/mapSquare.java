@@ -9,6 +9,10 @@ public class mapSquare {
   private int y;
   private int size = 60;
 
+  public mapSquare() {
+    
+  }
+
   public mapSquare(DConsole dc, int x, int y) {
     this.dc = dc;
     this.x = x;
