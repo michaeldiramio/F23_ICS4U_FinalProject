@@ -53,7 +53,6 @@ public class Main {
         this.controlsMenu();
       } else if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
         this.games.get(sc.nextInt()).initialize();
-        System.out.println(this.games.get(sc.nextInt()).getWinner());
       } else if(this.dc.isKeyPressed('R')) {
         this.pickGame();
       } else if(this.dc.isKeyPressed('B')) {
@@ -206,13 +205,18 @@ public class Main {
         this.players.get(1).draw();
       }
       this.dc.redraw();
-      this.dc.pause(10000);
+      this.dc.pause(5000);
       if(this.pickGame() == 1) {
         
         p1.setBoardPos(p1.getBoardPos() + 1);
         p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
         p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
+        
       } else {
+
+        p2.setBoardPos(p2.getBoardPos() + 1);
+        p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX());
+        p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY());
         
       }
       
