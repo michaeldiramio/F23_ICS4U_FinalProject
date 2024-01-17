@@ -195,31 +195,34 @@ public class Main {
       }
 
       //draw player icon full size if different coordinates, otherwise p1 in top-left corner p2 bottom-right at half size
-      if(this.players.get(0).getBoardX() == this.players.get(1).getBoardX() && this.players.get(0).getBoardY() == this.players.get(1).getBoardY()) { //same spot
+      if(p1.getBoardPos() == p2.getBoardPos()) { //same position
         this.dc.setPaint(Color.RED);
-        this.players.get(0).drawShared(-15);
+        p1.drawShared(-15);
         this.dc.setPaint(Color.BLUE);
-        this.players.get(1).drawShared(15);
-      } else {
+        p2.drawShared(15);
+      } else { //different positions
         this.dc.setPaint(Color.RED);
-        this.players.get(0).draw();
+        p1.draw();
         this.dc.setPaint(Color.BLUE);
-        this.players.get(1).draw();
+        p2.draw();
       }
-      this.dc.redraw();
-      this.dc.pause(5000);
-      if(this.pickGame() == 1) {
-        
-        p1.setBoardPos(p1.getBoardPos() + 1);
-        p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
-        p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
-        
-      } else {
 
-        p2.setBoardPos(p2.getBoardPos() + 1);
-        p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX());
-        p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY());
-        
+      if(p1.selectPressed() || p2.selectPressed()) { //maybe put some dice rollhere
+
+        //Play random game and move players afterwards
+        if(this.pickGame() == 1) {
+
+          p1.setBoardPos(p1.getBoardPos() + 1);
+          p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
+          p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
+
+        } else {
+
+          p2.setBoardPos(p2.getBoardPos() + 1);
+          p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX());
+          p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY());
+
+        }
       }
       
       this.dc.redraw();
