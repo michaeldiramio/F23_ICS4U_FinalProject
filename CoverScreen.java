@@ -47,29 +47,29 @@ public class CoverScreen extends baseGame {
       elapsedTime = System.currentTimeMillis();
 
       if (player1.upPressed()) {
-        player1.changeY(5);
+        player1.changeY(-1);
       }
       if (player1.downPressed()) {
-          player1.changeY(-5);
+          player1.changeY(1);
         }
       if (player1.leftPressed()) {
-        player1.changeX(-5);
+        player1.changeX(-1);
       }
       if (player1.rightPressed()) {
-        player1.changeX(-5);
+        player1.changeX(1);
       }
       //player 2
       if (player2.upPressed()) {
-        player2.changeY(5);
+        player2.changeY(-1);
       }
       if (player2.downPressed()) {
-          player2.changeY(-5);
+          player2.changeY(1);
         }
       if (player2.leftPressed()) {
-        player2.changeX(-5);
+        player2.changeX(-1);
       }
       if (player2.rightPressed()) {
-        player2.changeX(-5);
+        player2.changeX(1);
       }
  //player 1
     if ( player1.getY() > 575) { //top and bottem walls
@@ -81,7 +81,7 @@ public class CoverScreen extends baseGame {
 
     }
 
-    if ( player1.getX() > 925) { // for wall and points
+    if ( player1.getX() > 875) { // for wall and points
        player1.changeY(-3); 
     }
 
@@ -98,7 +98,7 @@ public class CoverScreen extends baseGame {
 
       }
 
-      if ( player2.getX() > 925) { // for wall and points
+      if ( player2.getX() > 875) { // for wall and points
          player2.changeY(-3); 
       }
 
@@ -107,6 +107,7 @@ public class CoverScreen extends baseGame {
       }
     
     dc.redraw();
+    
     //winner conditions
    // if (player1count > player2count) {
   //    super.winner = 1;
