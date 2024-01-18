@@ -92,7 +92,7 @@ public class Main {
     //initialize variables
     int keyCounter = 0;
     int cursorX = 120;
-    int cursorY = 140;
+    int cursorY = 540;
     boolean done = false;
     
     while(!done) {
@@ -121,13 +121,7 @@ public class Main {
 
         //key inputs (move cursor and select options)
         if(keyCounter == 0) {
-          if(tmp.upPressed() && cursorY > 140) {
-            cursorY -= 80;
-            keyCounter = 8;
-          } if(tmp.downPressed() && cursorY < 540) {
-            cursorY += 80;
-            keyCounter = 8;
-          } if(tmp.leftPressed() && cursorX > 200) {
+          if(tmp.leftPressed() && cursorX > 200) {
             cursorX -= 400;
             keyCounter = 8;
           } if(tmp.rightPressed() && cursorX < 40 + 400 * (this.players.size() - 1)) {
