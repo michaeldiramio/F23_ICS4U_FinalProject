@@ -47,45 +47,45 @@ public class CoverScreen extends baseGame {
       elapsedTime = System.currentTimeMillis();
 
       if (player1.upPressed()) {
-        player1.changeY(5);
+        player1.changeY(-5);
       }
       if (player1.downPressed()) {
-          player1.changeY(-5);
+          player1.changeY(5);
         }
       if (player1.leftPressed()) {
         player1.changeX(-5);
       }
       if (player1.rightPressed()) {
-        player1.changeX(-5);
+        player1.changeX(5);
       }
       //player 2
       if (player2.upPressed()) {
-        player2.changeY(5);
+        player2.changeY(-5);
       }
       if (player2.downPressed()) {
-          player2.changeY(-5);
+          player2.changeY(5);
         }
       if (player2.leftPressed()) {
         player2.changeX(-5);
       }
       if (player2.rightPressed()) {
-        player2.changeX(-5);
+        player2.changeX(5);
       }
  //player 1
     if ( player1.getY() > 575) { //top and bottem walls
        player1.changeY(-3); 
     }
 
-    if ( player1.getY() < 15) { 
+    if ( player1.getY() < 25) { 
        player1.changeY(3); 
 
     }
 
-    if ( player1.getX() > 925) { // for wall and points
+    if ( player1.getX() > 875) { // for wall and points
        player1.changeY(-3); 
     }
 
-    if ( player1.getX() < 15) { 
+    if ( player1.getX() < 25) { 
        player1.changeY(3); 
     }
  // player 2
@@ -93,16 +93,16 @@ public class CoverScreen extends baseGame {
          player2.changeY(-3); 
       }
 
-      if ( player2.getY() < 15) { 
+      if ( player2.getY() < 25) { 
          player2.changeY(3); 
 
       }
 
-      if ( player2.getX() > 925) { // for wall and points
+      if ( player2.getX() > 875) { // for wall and points
          player2.changeY(-3); 
       }
 
-      if ( player2.getX() < 15) { 
+      if ( player2.getX() < 25) { 
          player2.changeY(3); 
       }
     
