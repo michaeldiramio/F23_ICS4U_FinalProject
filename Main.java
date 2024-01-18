@@ -8,6 +8,7 @@ public class Main {
   private ArrayList<baseGame> games = new ArrayList<baseGame>();
   private ArrayList<Player> players = new ArrayList<Player>();
   private Random rnd = new Random();
+  private int gameWinner = 0;
   
 	public static void main(String[] args) {
 
@@ -62,6 +63,7 @@ public class Main {
         this.pickGame();
       } else if(this.dc.isKeyPressed('B')) {
         this.playGame();
+        this.endScreen();
       }
       
       this.dc.redraw();
@@ -270,6 +272,13 @@ public class Main {
             }
             keyCounter = 8;
           }
+          if(p1.getBoardPos() == 55) { //p1 wins
+            playing = false;
+            this.gameWinner = 1;
+          } else if(p2.getBoardPos() == 55) { //p2 wins
+            playing = false;
+            this.gameWinner = 2;
+          }
           break;
           
         case 2:
@@ -289,8 +298,26 @@ public class Main {
   }
 
   public void instructionsMenu() { //to be made ./
-    
+    System.out.println("Running instructionsMenu");
   }
 
+  public void endScreen() {
+    System.out.println("Running endScreen");
+    while(true) {
+      this.dc.clear();
+      this.dc.setFont(new Font("Dialog", Font.PLAIN, 12));
+      this.dc.setPaint(Color.BLACK);
+      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
+
+      if(this.gameWinner == 1) {
+        this.dc.drawString("p1 Wins", 450, 300);
+      } else {
+        this.dc.drawString("p2 Wins", 450, 300);
+      }
+      
+      this.dc.redraw();
+      this.dc.pause(20);
+    }
+  }
   
 }
