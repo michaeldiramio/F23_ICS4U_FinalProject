@@ -13,6 +13,8 @@ public class CoverScreen extends baseGame {
   int player2count = 0;
   int keycount1 = 0;
   int keycount2 = 0;
+  int score1 = 0;
+  int score2 = 0;
 
   public CoverScreen(DConsole dc, Player p1, Player p2) {
     player1 = p1;
@@ -30,7 +32,8 @@ public class CoverScreen extends baseGame {
   }
 
   public void run() {
-    //setup stuff
+    // setup stuff
+
     Font f = dc.getFont(); // the writing setup
     dc.setFont(new Font("DejaVu Sans", Font.BOLD, 20));
     long startTime = System.currentTimeMillis();
@@ -39,7 +42,7 @@ public class CoverScreen extends baseGame {
     dc.fillRect(450, 300, 900, 600);
 
     while (elapsedTime - startTime < 10000) {
-// draw the map
+      // draw the map
       dc.setPaint(new Color(255, 0, 0));
       dc.fillEllipse(player1.getX(), player1.getY(), 50, 50);
       dc.setPaint(new Color(0, 255, 0));
@@ -47,73 +50,91 @@ public class CoverScreen extends baseGame {
       elapsedTime = System.currentTimeMillis();
 
       if (player1.upPressed()) {
-        player1.changeY(-5);
+        player1.changeY(-1);
+        score1 = score1 + 1;
       }
       if (player1.downPressed()) {
-          player1.changeY(5);
-        }
+        player1.changeY(1);
+        score1 = score1 + 1;
+      }
       if (player1.leftPressed()) {
-        player1.changeX(-5);
+        player1.changeX(-1);
+        score1 = score1 + 1;
       }
       if (player1.rightPressed()) {
-        player1.changeX(5);
+        player1.changeX(1);
+        score1 = score1 + 1;
       }
-      //player 2
+      // player 2
       if (player2.upPressed()) {
-        player2.changeY(-5);
+        player2.changeY(-1);
+        score2 = score2 + 1;
       }
       if (player2.downPressed()) {
-          player2.changeY(5);
-        }
+        player2.changeY(1);
+        score2 = score2 + 1;
+      }
       if (player2.leftPressed()) {
-        player2.changeX(-5);
+        player2.changeX(-1);
+        score2 = score2 + 1;
       }
       if (player2.rightPressed()) {
-        player2.changeX(5);
+        player2.changeX(1);
+        score2 = score2 + 1;
       }
- //player 1
-    if ( player1.getY() > 575) { //top and bottem walls
-       player1.changeY(-3); 
+      // player 1
+      if (player1.getY() > 575) { // top and bottem walls
+        player1.changeY(-1);
+      }
+
+      if (player1.getY() < 25) {
+        player1.changeY(1);
+
+      }
+
+      if (player1.getX() > 875) { // for wall and points
+        player1.changeX(-1);
+      }
+
+      if (player1.getX() < 25) {
+        player1.changeX(1);
+      }
+      // player 2
+      if (player2.getY() > 575) { // top and bottem walls
+        player2.changeY(-1);
+      }
+
+      if (player2.getY() < 25) {
+        player2.changeY(1);
+
+      }
+
+      if (player2.getX() > 875) { // for wall and points
+        player2.changeX(-1);
+      }
+
+      if (player2.getX() < 25) {
+        player2.changeX(1);
+      }
+
+      dc.redraw();
+
+      // winner conditions
+
     }
-
-    if ( player1.getY() < 25) { 
-       player1.changeY(3); 
-
+    if (score1 > score2) {
+      super.winner = 1;
+      dc.clear();
+      dc.drawString("player 1 wins", 450, 100);
+      dc.redraw();
+      dc.pause(2000);
     }
-
-    if ( player1.getX() > 875) { // for wall and points
-       player1.changeY(-3); 
+    if (score2 > score1) {
+      super.winner = 2;
+      dc.clear();
+      dc.drawString("player 2 wins", 450, 100);
+      dc.redraw();
+      dc.pause(2000);
     }
-
-    if ( player1.getX() < 25) { 
-       player1.changeY(3); 
-    }
- // player 2
-      if ( player2.getY() > 575) { //top and bottem walls
-         player2.changeY(-3); 
-      }
-
-      if ( player2.getY() < 25) { 
-         player2.changeY(3); 
-
-      }
-
-      if ( player2.getX() > 875) { // for wall and points
-         player2.changeY(-3); 
-      }
-
-      if ( player2.getX() < 25) { 
-         player2.changeY(3); 
-      }
-    
-    dc.redraw();
-    //winner conditions
-   // if (player1count > player2count) {
-  //    super.winner = 1;
-   // }
-    //if (player2count > player1count) {
-     // super.winner = 2;
-  //  }
-  }
   }
 }
