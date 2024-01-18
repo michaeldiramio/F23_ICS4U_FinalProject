@@ -42,6 +42,7 @@ public class Main {
     
     //run game loop
     System.out.println("Game initialized -- Running main loop");
+    System.out.println("Playing with " + this.games.size() + " minigames!");
     this.runGame();
   }
   
