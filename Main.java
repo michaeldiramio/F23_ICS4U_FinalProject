@@ -8,6 +8,7 @@ public class Main {
   private ArrayList<baseGame> games = new ArrayList<baseGame>();
   private ArrayList<Player> players = new ArrayList<Player>();
   private Random rnd = new Random();
+  private int gameWinner = 0;
   
 	public static void main(String[] args) {
 
@@ -62,6 +63,7 @@ public class Main {
         this.pickGame();
       } else if(this.dc.isKeyPressed('B')) {
         this.playGame();
+        this.endScreen();
       }
       
       this.dc.redraw();
@@ -93,7 +95,7 @@ public class Main {
 
   public void controlsMenu() {
     //initialize variables
-    int keyCounter = 0;
+    int keyCounter = 20;
     int cursorX = 120;
     int cursorY = 540;
     boolean done = false;
@@ -133,6 +135,7 @@ public class Main {
           } if(tmp.selectPressed()) {
             if(cursorY == 540) { //"EXIT" selected -- back to main menu
               done = true;
+              System.out.println("exit controls");
             }
           }
         }
@@ -162,7 +165,7 @@ public class Main {
     Player p1 = this.players.get(0);
     Player p2 = this.players.get(1);
     int cursorPos = 0;
-    int keyCounter = 0;
+    int keyCounter = 20;
     ArrayList<mapSquare> mapSquares = new ArrayList<mapSquare>();
  
     //draw game squares
@@ -182,9 +185,7 @@ public class Main {
       if(i == 55) { //last square
         mapSquares.add(new EndSquare(this.dc, 840 - counter * 60, rowNum * 120 + 120));
         break;
-      }
-      //draw average square
-      if(rowNum % 2 == 0)  {//add squares left->right
+      } else if(rowNum % 2 == 0)  {//add squares left->right
         mapSquares.add(new mapSquare(this.dc, counter * 60 + 60, rowNum * 120 + 120));
       } else { //add squares right->left
         mapSquares.add(new mapSquare(this.dc, 840 - counter * 60, rowNum * 120 + 120));
@@ -194,29 +195,8 @@ public class Main {
     
     while(playing) {
       this.dc.clear();
-      this.dc.setFont(new Font("Dialog", Font.PLAIN, 12));
-      this.dc.setPaint(Color.BLACK);
-      this.dc.setOrigin(DConsole.ORIGIN_CENTER);
-
-      //draw image origin middle of screen
-      this.dc.drawImage("gameMap/background.png", 450, 300);
-      //draw game squares
-      for(int i = 0; i < mapSquares.size(); i++) {
-        mapSquares.get(i).draw();
-      }
-
-      //draw player icon full size if different coordinates, otherwise p1 in top-left corner p2 bottom-right at half size
-      if(p1.getBoardPos() == p2.getBoardPos()) { //same position
-        this.dc.setPaint(Color.RED);
-        p1.drawShared(-15);
-        this.dc.setPaint(Color.BLUE);
-        p2.drawShared(15);
-      } else { //different positions
-        this.dc.setPaint(Color.RED);
-        p1.draw();
-        this.dc.setPaint(Color.BLUE);
-        p2.draw();
-      }
+      this.resetDConsole();
+      this.drawGameBoard(mapSquares);
 
       this.dc.setOrigin(DConsole.ORIGIN_LEFT);
       //labels
@@ -228,14 +208,15 @@ public class Main {
       if(keyCounter == 0) {
         if((p1.rightPressed() || p2.rightPressed()) && cursorPos < 2) {
           cursorPos++;
-          keyCounter = 8;
+          keyCounter = 15;
         } else if((p1.leftPressed() || p2.leftPressed()) && cursorPos > 0) {
           cursorPos--;
-          keyCounter = 8;
+          keyCounter = 15;
         } else if(this.dc.isKeyPressed('l')) { //temp move player for testing /.
           p1.setBoardPos(p1.getBoardPos() + 1);
           p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
           p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
+          System.out.println(p1.getBoardPos());
           keyCounter = 8;
         }
       }
@@ -270,6 +251,17 @@ public class Main {
             }
             keyCounter = 8;
           }
+          if(p1.getBoardPos() == 58) { //p1 wins
+            playing = false;
+            this.gameWinner = 1;
+            this.drawGameBoard(mapSquares); //display final gameBoard state before ending
+            this.dc.pause(2000);
+          } else if(p2.getBoardPos() == 58) { //p2 wins
+            playing = false;
+            this.gameWinner = 2;
+            this.drawGameBoard(mapSquares); //display final gameBoard state before ending
+            this.dc.pause(2000);
+          }
           break;
           
         case 2:
@@ -288,9 +280,56 @@ public class Main {
     }
   }
 
-  public void instructionsMenu() { //to be made ./
-    
+  public void drawGameBoard(ArrayList<mapSquare> mapSquares) {
+    Player p1 = this.players.get(0);
+    Player p2 = this.players.get(1);
+    //draw image origin middle of screen
+    this.dc.drawImage("gameMap/background.png", 450, 300);
+    //draw game squares
+    for(int i = 0; i < mapSquares.size(); i++) {
+      mapSquares.get(i).draw();
+    }
+
+    //draw player icon full size if different coordinates, otherwise p1 in top-left corner p2 bottom-right at half size
+    if(p1.getBoardPos() == p2.getBoardPos()) { //same position
+      this.dc.setPaint(Color.RED);
+      p1.drawShared(-15);
+      this.dc.setPaint(Color.BLUE);
+      p2.drawShared(15);
+    } else { //different positions
+      this.dc.setPaint(Color.RED);
+      p1.draw();
+      this.dc.setPaint(Color.BLUE);
+      p2.draw();
+    }
+    this.dc.redraw();
   }
 
+  public void resetDConsole() { //reset DConsole settings
+    this.dc.setFont(new Font("Dialog", Font.PLAIN, 12));
+    this.dc.setPaint(Color.BLACK);
+    this.dc.setOrigin(DConsole.ORIGIN_CENTER);
+  }
+
+  public void instructionsMenu() { //to be made ./
+    System.out.println("Running instructionsMenu");
+  }
+
+  public void endScreen() { //make cool ./
+    System.out.println("Running endScreen");
+    while(true) {
+      this.dc.clear();
+      this.resetDConsole();
+
+      if(this.gameWinner == 1) {
+        this.dc.drawString("p1 Wins", 450, 300);
+      } else {
+        this.dc.drawString("p2 Wins", 450, 300);
+      }
+      
+      this.dc.redraw();
+      this.dc.pause(20);
+    }
+  }
   
 }
