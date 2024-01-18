@@ -25,6 +25,7 @@ public class Main {
     this.players.add(new Player(this.dc, 38, 37, 40, 39, 16));
 
     //add games
+    this.games.add(new pong (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new GrabOrb (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new CoverScreen (this.dc, this.players.get(0), this.players.get(1)));
