@@ -34,6 +34,7 @@ public class Main {
     this.games.add(new RPS (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new ticTacToe (this.dc, this.rnd, this.players.get(0), this.players.get(1))); 
     this.games.add(new DontGrabOrbGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new SpeedWord (this.dc, this.players.get(0), this.players.get(1), this.rnd));
     this.games.add(new TugOfWar (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new GuessingGame (this.dc, this.players.get(0), this.players.get(1)));
     
