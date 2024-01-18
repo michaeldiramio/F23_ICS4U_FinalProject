@@ -42,9 +42,6 @@ public class Main {
       if(this.dc.isKeyPressed('C')) {
         this.controlsMenu();
       }
-					if(this.dc.isKeyPressed('L')) {
-							this.games.get(1).initialize();
-					}
       
       this.dc.redraw();
     }
