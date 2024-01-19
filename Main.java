@@ -296,7 +296,7 @@ public class Main {
       this.drawGameBoard(mapSquares);
       //uses https://iconduck.com/sets/css-gg-icon-set for dice images
       this.dc.drawImage("Dice/" + diceNum + ".png", 450, 300);
-      if(cd > 50 && diceNum != result) { // start heavily slowing down
+      if(cd > 30 && diceNum != result) { // start heavily slowing down
         cd += 100;
       }
       if(cd > 500) { //slowest speed is 500ms
