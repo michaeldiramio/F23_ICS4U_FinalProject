@@ -240,12 +240,12 @@ public class Main {
           this.dc.fillRect(375, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
             if(this.pickGame() == 1) { //play random game and move winning player forward
-              p1.setBoardPos(p1.getBoardPos() + 1); //increase board position
+              p1.setBoardPos(p1.getBoardPos() + this.diceRoll(mapSquares)); //increase board position
               p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX()); //new X
               p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY()); //new Y
 
             } else {
-              p2.setBoardPos(p2.getBoardPos() + 1); //increase bord position
+              p2.setBoardPos(p2.getBoardPos() + this.diceRoll(mapSquares)); //increase bord position
               p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX()); //new X
               p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY()); //new Y
 
@@ -279,6 +279,36 @@ public class Main {
       this.dc.redraw();
       this.dc.pause(20);
     }
+  }
+
+  public int diceRoll(ArrayList<mapSquare> mapSquares) {
+    int cd = 0; //increase to slowdown
+    int diceNum = 1;
+    int result = this.rnd.nextInt(6) + 1;
+    
+    while (cd < 400 || diceNum != result) { //until correct dice showed after cd reached 400
+      //rotate through 6 dice
+      diceNum++;
+      if(diceNum == 7) {
+        diceNum = 1;
+      }
+      this.dc.clear();
+      this.drawGameBoard(mapSquares);
+      //uses https://iconduck.com/sets/css-gg-icon-set for dice images
+      this.dc.drawImage("Dice/" + diceNum + ".png", 450, 300);
+      if(cd > 50 && diceNum != result) { // start heavily slowing down
+        cd += 100;
+      }
+      if(cd > 500) { //slowest speed is 500ms
+        cd = 500;
+      }
+      cd++;
+      this.dc.redraw();
+      this.dc.pause(5 + cd);
+    }
+
+    return diceNum;
+    
   }
 
   public void drawGameBoard(ArrayList<mapSquare> mapSquares) {
