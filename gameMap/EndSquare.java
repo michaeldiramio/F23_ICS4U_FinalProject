@@ -21,5 +21,20 @@ public class EndSquare extends mapSquare {
     this.dc.setPaint(Color.RED);
     this.dc.drawRect(this.x, this.y, this.size, this.size);
   }
-  
+
+  public void setX(int val) {
+    this.x = val;
+  }
+
+  public void setY(int val) {
+    this.y = val;
+  }
+
+  public int getX() {
+    return this.x;
+  }
+
+  public int getY() {
+    return this.y;
+  }
 }
