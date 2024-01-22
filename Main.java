@@ -28,6 +28,7 @@ public class Main {
     //add games
     this.games.add(new pong (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new GrabOrb (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new NineCoins (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new CoverScreen (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new pickKey (this.dc, this.players.get(0), this.players.get(1)));
