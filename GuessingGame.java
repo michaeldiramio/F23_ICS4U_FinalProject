@@ -15,7 +15,8 @@ public class GuessingGame extends baseGame {
   }
   
   public void run(){
-    while (true){
+    int loop = 1;
+    while (loop == 1){
       this.dc.clear();
 
       Scanner userIn = new Scanner(System.in);
@@ -31,13 +32,13 @@ public class GuessingGame extends baseGame {
       if(Key.equals(Guess)){
         System.out.println("Player 2 Wins");
         super.winner = 2;
-        break;
+        loop = 0;
       }
 
       if(!Key.equals(Guess)){
         System.out.println("Player 1 Wins");
         super.winner = 1;
-        break;
+        loop = 0;
     }
   }
   }
