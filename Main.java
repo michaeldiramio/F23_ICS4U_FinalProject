@@ -241,12 +241,12 @@ public class Main {
           this.dc.fillRect(375, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
             if(this.pickGame() == 1) { //play random game and move winning player forward
-              p1.setBoardPos(p1.getBoardPos() + this.diceRoll(mapSquares)); //increase board position
+              p1.setBoardPos(p1.getBoardPos() + this.diceRoll(mapSquares, p1)); //increase board position
               p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX()); //new X
               p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY()); //new Y
 
             } else {
-              p2.setBoardPos(p2.getBoardPos() + this.diceRoll(mapSquares)); //increase bord position
+              p2.setBoardPos(p2.getBoardPos() + this.diceRoll(mapSquares, p2)); //increase bord position
               p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX()); //new X
               p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY()); //new Y
 
@@ -282,7 +282,7 @@ public class Main {
     }
   }
 
-  public int diceRoll(ArrayList<mapSquare> mapSquares) {
+  public int diceRoll(ArrayList<mapSquare> mapSquares, Player plr) {
     int cd = 0; //increase to slowdown
     int diceNum = 1;
     int result = this.rnd.nextInt(6) + 1;
@@ -308,6 +308,9 @@ public class Main {
       this.dc.pause(5 + cd);
     }
 
+    if(plr.getBoardPos() + diceNum > 58) {
+      diceNum = 58 - plr.getBoardPos();
+    }
     return diceNum;
     
   }
@@ -345,6 +348,20 @@ public class Main {
 
   public void instructionsMenu() { //to be made ./
     System.out.println("Running instructionsMenu");
+    this.resetDConsole();
+    this.dc.setFont(new Font("Dialog", Font.PLAIN, 20));
+    boolean waiting = true;
+    while(waiting) {
+      this.dc.clear();
+
+      this.dc.drawString("How To Play", 450, 50);
+      this.dc.drawString("Return", 450, 550);
+      this.dc.fillRect(430, 550, 20, 10); //cursor
+
+      this.dc.drawString("blah", 200, 150);
+      
+      this.dc.redraw();
+    }
   }
 
   public void endScreen() { //make cool ./
