@@ -138,6 +138,7 @@ public class Main {
             if(cursorY == 540) { //"EXIT" selected -- back to main menu
               done = true;
               System.out.println("exit controls");
+              this.dc.pause(200); //prevent double press
             }
           }
         }
@@ -346,7 +347,8 @@ public class Main {
     this.dc.setOrigin(DConsole.ORIGIN_CENTER);
   }
 
-  public void instructionsMenu() { //to be made ./
+  public void instructionsMenu() { 
+    this.dc.pause(200); //prevent double press
     System.out.println("Running instructionsMenu");
     this.resetDConsole();
     this.dc.setFont(new Font("Dialog", Font.PLAIN, 20));
@@ -359,8 +361,17 @@ public class Main {
       this.dc.drawString("Return", 420, 550);
       this.dc.fillRect(400, 555, 10, 5); //cursor
 
-      this.dc.fillEllipse(180, 150, 10, 10);
-      this.dc.drawString("blah", 200, 150);
+      this.dc.fillEllipse(180, 155, 8, 8);
+      this.dc.drawString("Win minigames to earn dice rolls", 200, 150); 
+      this.dc.fillRect(200, 185, 10, 5);
+      this.dc.drawString("Roll the dice to move forward", 220, 180);
+      this.dc.fillRect(200, 215, 10, 5);
+      this.dc.drawString("First to the end wins!", 220, 210);
+
+      if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()) {
+        waiting = false;
+        this.dc.pause(200); //prevent double press
+      }
       
       this.dc.redraw();
     }
