@@ -199,14 +199,23 @@ public class Main {
     
     while(playing) {
       this.dc.clear();
-      this.resetDConsole();
       this.drawGameBoard(mapSquares);
+      this.resetDConsole();
 
       this.dc.setOrigin(DConsole.ORIGIN_LEFT);
+      this.dc.setFont(new Font("Dialog", Font.PLAIN, 20));
       //labels
       this.dc.drawString("Controls", 100, 550);
       this.dc.drawString("Start", 400, 550);
       this.dc.drawString("How To Play", 700, 550);
+      this.dc.drawString("Press E or SHIFT to Select", 330, 50);
+      this.dc.drawString("P1:", 40, 45);
+      this.dc.setPaint(Color.BLUE);
+      this.dc.fillEllipse(80, 50, 20, 20);
+      this.dc.setPaint(Color.BLACK);
+      this.dc.drawString("P2:", 820, 45);
+      this.dc.setPaint(Color.RED);
+      this.dc.fillEllipse(860, 50, 20, 20);
 
       //detect left/right keypresses
       if(keyCounter == 0) {
@@ -221,7 +230,7 @@ public class Main {
           p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
           p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
           System.out.println(p1.getBoardPos());
-          keyCounter = 8;
+          keyCounter = 4;
         }
       }
 
@@ -230,12 +239,13 @@ public class Main {
       }
 
       //draw cursor on labels at bottom of screen && check for keypresses to select hovered
+      this.dc.setPaint(Color.BLACK);
       switch(cursorPos) {
         case 0:
           this.dc.fillRect(75, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
             this.controlsMenu();
-            keyCounter = 8;
+            keyCounter = 4;
           }
           break;
 
@@ -253,7 +263,7 @@ public class Main {
               p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY()); //new Y
 
             }
-            keyCounter = 8;
+            keyCounter = 4;
           }
           if(p1.getBoardPos() == 58) { //p1 wins
             playing = false;
@@ -272,7 +282,7 @@ public class Main {
           this.dc.fillRect(675, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
             this.instructionsMenu();
-            keyCounter = 8;
+            keyCounter = 4;
           }
           break;
       }
@@ -280,7 +290,7 @@ public class Main {
       
       
       this.dc.redraw();
-      this.dc.pause(20);
+      this.dc.pause(40);
     }
   }
 
@@ -318,6 +328,7 @@ public class Main {
   }
 
   public void drawGameBoard(ArrayList<mapSquare> mapSquares) {
+    this.resetDConsole();
     Player p1 = this.players.get(0);
     Player p2 = this.players.get(1);
     //draw image origin middle of screen
