@@ -355,9 +355,11 @@ public class Main {
       this.dc.clear();
 
       this.dc.drawString("How To Play", 450, 50);
-      this.dc.drawString("Return", 450, 550);
-      this.dc.fillRect(430, 550, 20, 10); //cursor
+      this.dc.setOrigin(DConsole.ORIGIN_LEFT);
+      this.dc.drawString("Return", 420, 550);
+      this.dc.fillRect(400, 555, 10, 5); //cursor
 
+      this.dc.fillEllipse(180, 150, 10, 10);
       this.dc.drawString("blah", 200, 150);
       
       this.dc.redraw();
