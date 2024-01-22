@@ -112,7 +112,9 @@ public class SpeedWord extends baseGame {
         dc.redraw();
         dc.pause(1500);
         befplay = 0;
-      } else if(dc.isKeyPressed(chrArr[p2chr][0]) && dc.isKeyPressed(chrArr[p2chr][1]) && dc.isKeyPressed(chrArr[p2chr][2])) { //if player 2 presses their char keys, add score
+      } 
+      
+      if(dc.isKeyPressed(chrArr[p2chr][0]) && dc.isKeyPressed(chrArr[p2chr][1]) && dc.isKeyPressed(chrArr[p2chr][2])) { //if player 2 presses their char keys, add score
         dc.drawString(("Player 2 wins round"), 450, 300);
         p2Score ++;
         dc.redraw();

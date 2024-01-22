@@ -47,10 +47,10 @@ public class RPS extends baseGame {
       //Starting Screen
       dc.clear();
       dc.setPaint(new Color(15, 190, 209));
-      dc.fillRect(225, 150, 900, 600);
+      dc.fillRect(450, 300, 900, 600);
       dc.setPaint(Color.BLUE);
-      dc.drawString("Rock-Paper-Scissors (Best of 3)", 225, 75);
-      dc.drawString("Press space to start", 225, 175);
+      dc.drawString("Rock-Paper-Scissors (Best of 3)", 450, 175);
+      dc.drawString("Press space to start", 450, 250);
       dc.setFont(new Font("Dialog", Font.BOLD, 20));
       if(dc.isKeyPressed(32)){
         game = 1;
