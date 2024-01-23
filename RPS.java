@@ -184,10 +184,16 @@ public class RPS extends baseGame {
 
     //if a player has a score of 2, make them the winner and go back to board
     if(p1Score == 2) {
+      dc.clear();
       dc.drawString(("Player 1 is the winner!"), 450, 300);
+      dc.redraw();
+      dc.pause(2000);
       super.winner = 1;
     } else if(p2Score == 2) {
+      dc.clear();
       dc.drawString(("Player 2 is the winner!"), 450, 300);
+      dc.redraw();
+      dc.pause(2000);
       super.winner = 2;
     }
 

@@ -122,8 +122,16 @@ public class ticTacToe extends baseGame {
 
       // Check for 3 in a row
       if(p1Squares == 3){
+        dc.clear();
+        dc.drawString(("Player 1 won!"), 450, 300);
+        dc.redraw();
+        dc.pause(2000);
         super.winner = 1;
       } else if (p2Squares == 3){
+        dc.clear();
+        dc.drawString(("Player 2 won!"), 450, 300);
+        dc.redraw();
+        dc.pause(2000);
         super.winner = 2;
       }
     }
@@ -143,8 +151,16 @@ public class ticTacToe extends baseGame {
 
       // Check for 3 in a row
       if(p1Squares == 3){
+        dc.clear();
+        dc.drawString(("Player 1 won!"), 450, 300);
+        dc.redraw();
+        dc.pause(2000);
         super.winner = 1;
       } else if (p2Squares == 3){
+        dc.clear();
+        dc.drawString(("Player 2 won!"), 450, 300);
+        dc.redraw();
+        dc.pause(2000);
         super.winner = 2;
       }
     }
@@ -163,8 +179,16 @@ public class ticTacToe extends baseGame {
     
     // Check for 3 in a row
     if(p1Squares == 3){
+      dc.clear();
+      dc.drawString(("Player 1 won!"), 450, 300);
+      dc.redraw();
+      dc.pause(2000);
       super.winner = 1;
     } else if (p2Squares == 3){
+      dc.clear();
+      dc.drawString(("Player 2 won!"), 450, 300);
+      dc.redraw();
+      dc.pause(2000);
       super.winner = 2;
     } 
     
@@ -180,9 +204,17 @@ public class ticTacToe extends baseGame {
     }
 
     // Check for 3 in a row
-    if(p1Squares == 3){
+    if (p1Squares == 3){
+      dc.clear();
+      dc.drawString(("Player 1 won!"), 450, 300);
+      dc.redraw();
+      dc.pause(2000);
       super.winner = 1;
     } else if (p2Squares == 3){
+      dc.clear();
+      dc.drawString(("Player 2 won!"), 450, 300);
+      dc.redraw();
+      dc.pause(2000);
       super.winner = 2;
     }
 

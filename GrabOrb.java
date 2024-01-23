@@ -1,8 +1,13 @@
 import DLibX.DConsole;
+import java.io.File;
 import java.awt.Color;
 import java.awt.geom.AffineTransform;
-import java.util.*;
+import java.awt.*;
+import java.util.Scanner;
 import java.util.Random;
+import java.io.PrintStream;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 public class GrabOrb extends baseGame {
   
   DConsole dc;
@@ -43,6 +48,15 @@ public class GrabOrb extends baseGame {
   }
 
   public void run() {
+    //fonts
+    String fonts[] =   GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+
+    for (int i = 0; i < fonts.length; i++) {
+      System.out.println(fonts[i]);
+    }
+    dc.setFont(new Font("Dialog", Font.ITALIC, 20));
+
+    
     System.out.println("GrabOrb Started");
     while (true) { 
       dc.clear();
@@ -52,7 +66,7 @@ public class GrabOrb extends baseGame {
       dc.fillEllipse(playx,playy,25,25);
       dc.fillEllipse(playx2,playy2,25,25);
       dc.drawString(points, 100, 40);
-      dc.drawString(points2, 500, 40);
+      dc.drawString(points2, 800, 40);
      //controlls 
       if (player1.upPressed()) {
         playy -= 5;
@@ -94,12 +108,20 @@ public class GrabOrb extends baseGame {
         }
       }
       if (points >= 10) {
+        dc.clear();
         dc.drawString("Player One Won!!!!", 450, 300);
-        System.out.println("test");
+        dc.redraw();
+        dc.pause(2000);
+        //System.out.println("test");
+        super.winner = 1;
         break;
-        } else if (points2 >=10) {
-          dc.drawString("Player Two Won!!!!", 450, 300); 
-        System.out.println("test");
+      } else if (points2 >=10) {
+        dc.clear();
+        dc.drawString("Player Two Won!!!!", 450, 300); 
+        dc.redraw();
+        dc.pause(2000);
+        //System.out.println("test");
+        super.winner = 2;
         break;
       }
       dc.redraw();
