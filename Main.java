@@ -359,7 +359,7 @@ public class Main {
       this.dc.drawString("How To Play", 450, 50);
       this.dc.setOrigin(DConsole.ORIGIN_LEFT);
       this.dc.drawString("Return", 420, 550);
-      this.dc.fillRect(400, 555, 10, 5); //cursor
+      this.dc.fillRect(400, 555, 10, 5); //Cursor
 
       this.dc.fillEllipse(180, 155, 8, 8);
       this.dc.drawString("Win minigames to earn dice rolls", 200, 150); 
