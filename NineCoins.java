@@ -24,6 +24,8 @@ public class NineCoins extends baseGame {
 
   public void initialize() {
     System.out.println("running");
+    player1count = 0;
+    player2count = 0;
     player1.setX(100);
     player1.setY(550);
     player2.setX(800);
@@ -33,7 +35,7 @@ public class NineCoins extends baseGame {
 
   public void run() {
     // setup stuff
-    dc.clear();
+    
     Font f = dc.getFont(); // the writing setup
     dc.setFont(new Font("DejaVu Sans", Font.BOLD, 20));
     long startTime = System.currentTimeMillis();
@@ -47,6 +49,7 @@ public class NineCoins extends baseGame {
       }
     while (elapsedTime - startTime < 10000) {
       // draw the map
+      dc.clear();
       dc.setPaint(new Color(255, 0, 0));
       dc.fillEllipse(player1.getX(), player1.getY(), 50, 50);
       dc.setPaint(new Color(0, 255, 0));
@@ -121,7 +124,7 @@ public class NineCoins extends baseGame {
         player2.changeX(1);
       }
 
-      dc.redraw();
+      
 
       // winner conditions
       for(int i=0; i < 11; i++){
@@ -141,6 +144,7 @@ public class NineCoins extends baseGame {
           }
         }
       }
+      dc.redraw();
     }
     if (score1 > score2) {
       super.winner = 1;
