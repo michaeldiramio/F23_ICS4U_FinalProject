@@ -10,10 +10,11 @@ public class Main {
   private Random rnd = new Random();
   private int gameWinner = 0;
   
+
 	public static void main(String[] args) {
 
-    Main m = new Main();
-    
+				Main m = new Main();
+
 		m.initialize();
 	}
 
