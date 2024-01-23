@@ -12,7 +12,6 @@ public class DragRace extends baseGame{
   private Player p2;
 
  public DragRace(DConsole dc, Player p1, Player p2){
-  System.out.println("DragRace added");
    this.p1 = p1;
    this.p2 = p2;
    this.dc = dc;
@@ -29,7 +28,7 @@ public class DragRace extends baseGame{
       Random randomNum = new Random();
 
       //Grass
-      dc.setPaint(new Color(13, 122, 5));
+      dc.setPaint(new Color(60, 170, 50));
       this.dc.fillRect(450, 300, 900, 600);
 
       //Pavements
@@ -45,11 +44,11 @@ public class DragRace extends baseGame{
       this.dc.fillRect(850, 300, 30, 250);
 
       //Red Car
-      dc.setPaint(new Color(255, 0, 0));
+      dc.setPaint(new Color(195, 51, 50));
       this.dc.fillRect(p1.getX(), 200, 30, 20);
 
-      //Green Car
-      dc.setPaint(new Color(0, 255, 50));
+      //Blue Car
+      dc.setPaint(new Color(40, 175, 187));
       this.dc.fillRect(p2.getX(), 400, 30, 20);
 
       //Player 1 Movement
@@ -63,11 +62,13 @@ public class DragRace extends baseGame{
       }
 
       //Winner
-      if (p1.getX() == 835){
+      if (p1.getX() >= 835){
         super.winner = 1;
+        System.out.println("Player " + super.winner + " wins!");
         break;
-      } else if (p2.getX() == 835){
+      } else if (p2.getX() >= 835){
         super.winner = 2;
+        System.out.println("Player " + super.winner + " wins!");
         break;
       }
 

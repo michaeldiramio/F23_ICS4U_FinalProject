@@ -19,6 +19,7 @@ public class GrabOrb extends baseGame {
   int playy = 300;
   int playx2 = 450;
   int playy2 = 300;
+  int bloop = 0;
   public GrabOrb(DConsole dc, Player p1, Player p2) {
    this.dc = dc;
     this.player1 = p1;
@@ -39,18 +40,21 @@ public class GrabOrb extends baseGame {
     playy = 300;
     playx2 = 450;
     playy2 = 300;
+    bloop = 0;
     this.run();
   }
 
   public void run() {
     System.out.println("GrabOrb Started");
-    while (true) { 
+    while (bloop == 0) { 
       dc.clear();
      //orb 
       dc.fillEllipse(x,y,50,50);
       //players
       dc.fillEllipse(playx,playy,25,25);
+      dc.setPaint(Color.BLUE);
       dc.fillEllipse(playx2,playy2,25,25);
+      dc.setPaint(Color.BLACK);
       dc.drawString(points, 100, 40);
       dc.drawString(points2, 500, 40);
      //controlls 
@@ -93,14 +97,25 @@ public class GrabOrb extends baseGame {
           points2 += 1;
         }
       }
-      if (points >= 10) {
+      if (points >= 5) {
         dc.drawString("Player One Won!!!!", 450, 300);
-        System.out.println("test");
-        break;
-        } else if (points2 >=10) {
+        super.winner = 1;
+        System.out.println("Player One Won!!!!");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {      e.printStackTrace();
+        }
+        bloop = 1;
+        
+        } else if (points2 >= 5) {
           dc.drawString("Player Two Won!!!!", 450, 300); 
-        System.out.println("test");
-        break;
+        super.winner = 2;
+        System.out.println("Player Two Won!!!!");
+        try {
+          Thread.sleep(3000);
+        } catch (InterruptedException e) {      e.printStackTrace();
+        }
+        bloop = 1;
       }
       dc.redraw();
       dc.pause(20);
