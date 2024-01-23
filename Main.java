@@ -69,6 +69,24 @@ public class Main {
         this.playGame();
         this.endScreen();
       }
+
+      this.dc.setPaint(new Color(229, 204, 255));
+      this.dc.fillRect(450, 300, 900, 600);
+
+      this.dc.setPaint(Color.black);
+      dc.setFont(new Font("Serif", Font.BOLD, 42));
+      this.dc.drawString("WARIO WAREHOUSE", 450, 100);
+      
+      this.dc.setPaint(new Color(127, 0, 255));
+      this.dc.fillRect(450, 300, 250, 100);
+
+      this.dc.setPaint(Color.WHITE);
+      this.dc.drawString("E to PLAY", 450, 290);
+
+      if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()){
+        this.playGame();
+        this.endScreen();
+      }
       
       this.dc.redraw();
       this.dc.pause(20);
