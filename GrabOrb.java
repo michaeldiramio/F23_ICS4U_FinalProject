@@ -52,7 +52,9 @@ public class GrabOrb extends baseGame {
       dc.fillEllipse(x,y,50,50);
       //players
       dc.fillEllipse(playx,playy,25,25);
+      dc.setPaint(Color.BLUE);
       dc.fillEllipse(playx2,playy2,25,25);
+      dc.setPaint(Color.BLACK);
       dc.drawString(points, 100, 40);
       dc.drawString(points2, 500, 40);
      //controlls 
@@ -95,7 +97,7 @@ public class GrabOrb extends baseGame {
           points2 += 1;
         }
       }
-      if (points >= 10) {
+      if (points >= 5) {
         dc.drawString("Player One Won!!!!", 450, 300);
         super.winner = 1;
         System.out.println("Player One Won!!!!");
@@ -105,7 +107,7 @@ public class GrabOrb extends baseGame {
         }
         bloop = 1;
         
-        } else if (points2 >=10) {
+        } else if (points2 >= 5) {
           dc.drawString("Player Two Won!!!!", 450, 300); 
         super.winner = 2;
         System.out.println("Player Two Won!!!!");
