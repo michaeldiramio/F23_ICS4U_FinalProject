@@ -34,6 +34,7 @@ public class Main {
     this.games.add(new ticTacToe (this.dc, this.rnd, this.players.get(0), this.players.get(1))); 
     this.games.add(new DontGrabOrbGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new TugOfWar (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new Tag (this.dc, this.players.get(0), this.players.get(1)));
     
     //run game loop
     System.out.println("Game initialized -- Running main loop");
@@ -50,7 +51,7 @@ public class Main {
       if(this.dc.isKeyPressed('C')) {
         this.controlsMenu();
       } else if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
-        this.games.get(8).initialize();
+        this.games.get(9).initialize();
       } else if(this.dc.isKeyPressed('R')) {
         this.pickGame();
       }
