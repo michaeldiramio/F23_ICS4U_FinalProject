@@ -35,7 +35,7 @@ public class Main {
     this.games.add(new DragRace (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new MasherGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new RPS (this.dc, this.players.get(0), this.players.get(1)));
-    this.games.add(new ticTacToe (this.dc, this.rnd, this.players.get(0), this.players.get(1))); 
+    this.games.add(new ticTacToe (this.dc, this.players.get(0), this.players.get(1))); 
     this.games.add(new DontGrabOrbGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new SpeedWord (this.dc, this.players.get(0), this.players.get(1), this.rnd));
     this.games.add(new TugOfWar (this.dc, this.players.get(0), this.players.get(1)));
@@ -67,6 +67,8 @@ public class Main {
         this.pickGame();
       } else if(this.dc.isKeyPressed('B')) {
         this.playGame();
+        this.endScreen();
+      } else if(this.dc.isKeyPressed('E')) {
         this.endScreen();
       }
 
@@ -175,7 +177,6 @@ public class Main {
       this.dc.setOrigin(DConsole.ORIGIN_CENTER);
     }
   }
-
 
   //game in-progress
   public void playGame() {
@@ -410,14 +411,55 @@ public class Main {
 
   public void endScreen() { //make cool ./
     System.out.println("Running endScreen");
+    int buttonSize = 0;
+    
     while(true) {
       this.dc.clear();
       this.resetDConsole();
 
+      int mouseX = this.dc.getMouseXPosition();
+      int mouseY = this.dc.getMouseYPosition();
+
+      this.dc.drawImage("gameMap/background.png", 450, 300);
+      // Game Over Text
+      this.dc.setPaint(Color.BLACK);
+      this.dc.setFont(new Font("Dialog", Font.BOLD, 125));
+      this.dc.drawString("Game Over", 450, 60);
+
+      // Player Wins Text
+      this.dc.setFont(new Font("Dialog", Font.BOLD, 90)); 
       if(this.gameWinner == 1) {
-        this.dc.drawString("p1 Wins", 450, 300);
+        this.dc.setPaint(Color.RED);
+        this.dc.drawString("Player 1 Wins", 450, 165);
       } else {
-        this.dc.drawString("p2 Wins", 450, 300);
+        this.dc.setPaint(Color.BLUE);
+        this.dc.drawString("Player 2 Wins", 450, 165);
+      }
+
+      // Restart Button Graphics
+      this.dc.setPaint(Color.BLACK);
+      this.dc.fillRect(450, 450, 245 + buttonSize, 105 + buttonSize);
+      this.dc.setPaint(Color.GRAY);
+      this.dc.fillRect(450, 450, 240 + buttonSize, 100 + buttonSize);
+      this.dc.setPaint(Color.WHITE);
+      this.dc.setFont(new Font("DialogInput", Font.BOLD, 25 + (buttonSize / 3)));
+      this.dc.drawString("Click Here To", 450, 430);
+      this.dc.drawString("Restart", 450, 470);
+
+      // Restart Button Interaction
+      if (mouseX >= 330 && mouseX <= 570 &&
+         mouseY >= 400 && mouseY <= 500) {
+
+        buttonSize = 15;
+        // Reset arrays and intialize again
+        if (this.dc.isMouseButton(1) ) {
+          this.games = new ArrayList<baseGame>();
+          this.players = new ArrayList<Player>();
+          this.gameWinner = 0;
+          this.initialize();
+        }
+      } else {
+        buttonSize = 0;
       }
       
       this.dc.redraw();

@@ -15,9 +15,9 @@ public class ticTacToe extends baseGame {
 
   private gridSquare[][] gameBoard = new gridSquare[3][3];
   
-  public ticTacToe(DConsole dc, Random rng, Player p1, Player p2){
+  public ticTacToe(DConsole dc, Player p1, Player p2){
     this.dc = dc;
-    this.randGen = rng;
+    this.randGen = new Random();
     this.player1 = p1;
     this.player2 = p2;
   }
