@@ -26,6 +26,7 @@ public class Main {
 				this.players.add(new Player(this.dc, 38, 37, 40, 39, 16));
 
 				//add games
+				this.games.add(new pong (this.dc, this.players.get(0), this.players.get(1)));
 				this.games.add(new GrabOrb (this.dc, this.players.get(0), this.players.get(1)));
 				this.games.add(new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
 				this.games.add(new CoverScreen (this.dc, this.players.get(0), this.players.get(1)));
@@ -35,9 +36,10 @@ public class Main {
 				this.games.add(new RPS (this.dc, this.players.get(0), this.players.get(1)));
 				this.games.add(new ticTacToe (this.dc, this.rnd, this.players.get(0), this.players.get(1))); 
 				this.games.add(new DontGrabOrbGame (this.dc, this.players.get(0), this.players.get(1)));
+				this.games.add(new SpeedWord (this.dc, this.players.get(0), this.players.get(1), this.rnd));
 				this.games.add(new TugOfWar (this.dc, this.players.get(0), this.players.get(1)));
+				this.games.add(new GuessingGame (this.dc, this.players.get(0), this.players.get(1)));
 			this.games.add(new DiceGame (this.dc, this.players.get(0), this.players.get(1)));
-			this.games.add(new Dino (this.dc, this.players.get(0), this.players.get(1)));
 
 				//run game loop
 				System.out.println("Game initialized -- Running main loop");
@@ -65,10 +67,6 @@ public class Main {
 								this.playGame();
 								this.endScreen();
 						}
-							
-					if(this.dc.isKeyPressed('L')) {
-							this.games.get(11).initialize();
-					}
 
 						this.dc.redraw();
 						this.dc.pause(20);
