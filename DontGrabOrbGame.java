@@ -10,7 +10,7 @@ public class DontGrabOrbGame extends baseGame {
   Random r = new Random();
     int x = r.nextInt(800) + 30;
     int y = 100;
-    int n = 7;
+    int n = 10;
     int morey = r.nextInt(2) + n;
     int playx = 450;
     int playy = 500;
@@ -31,11 +31,21 @@ public class DontGrabOrbGame extends baseGame {
     }
 
     public void initialize() {
+      x = r.nextInt(800) + 30;
+      y = 100;
+      n = 10;
+      morey = r.nextInt(2) + n;
+      playx = 450;
+      playy = 500;
+      playx2 = 450;
+      playy2 = 500;
+      check = 0;
+      i = 0;
     this.run();
     }
 
     public void run() {
-      System.out.println("JumpingGame Started");
+      System.out.println(" Don'tGrabOrbGame Started");
       while (true) { 
         dc.clear();
         //Orb
@@ -70,7 +80,7 @@ public class DontGrabOrbGame extends baseGame {
 
         if (y > 700) {
           x = r.nextInt(800) + 30;
-          n = n + 2;
+          n = n + 1;
           morey = r.nextInt(2) + n;
           y = 100;
           i++;
@@ -81,12 +91,26 @@ public class DontGrabOrbGame extends baseGame {
           if (this.playx >= (this.x - 25) && this.playx <= (this.x + 25)) {
             playy = -10000;
             playx = -10000;
+            super.winner = 2;
+            System.out.println("Player Two Won!!!!");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {      e.printStackTrace();
+            }
+            break;
           }
         }
         if (this.playy2 >= (this.y - 25) && this.playy2 <= (this.y + 25)) {
           if (this.playx2 >= (this.x - 25) && this.playx2 <= (this.x + 25)) {
             playy2 = -10000;
             playx2 = -10000;
+            super.winner = 1;
+            System.out.println("Player One Won!!!!");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {      e.printStackTrace();
+            }
+            break;
           }
         }
 

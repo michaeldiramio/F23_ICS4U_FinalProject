@@ -12,7 +12,6 @@ public class DragRace extends baseGame{
   private Player p2;
 
  public DragRace(DConsole dc, Player p1, Player p2){
-  System.out.println("DragRace added");
    this.p1 = p1;
    this.p2 = p2;
    this.dc = dc;

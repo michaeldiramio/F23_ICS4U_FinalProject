@@ -28,6 +28,7 @@ public class Main {
     //add games
     this.games.add(new pong (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new GrabOrb (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new NineCoins (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new ClickGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new CoverScreen (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new pickKey (this.dc, this.players.get(0), this.players.get(1)));
@@ -39,6 +40,7 @@ public class Main {
     this.games.add(new SpeedWord (this.dc, this.players.get(0), this.players.get(1), this.rnd));
     this.games.add(new TugOfWar (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new GuessingGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new ShieldShooter (this.dc, this.players.get(0), this.players.get(1)));
 		this.games.add(new DiceGame (this.dc, this.players.get(0), this.players.get(1)));
     
     //run game loop
@@ -67,6 +69,24 @@ public class Main {
         this.playGame();
         this.endScreen();
       } else if(this.dc.isKeyPressed('E')) {
+        this.endScreen();
+      }
+
+      this.dc.setPaint(new Color(229, 204, 255));
+      this.dc.fillRect(450, 300, 900, 600);
+
+      this.dc.setPaint(Color.black);
+      dc.setFont(new Font("Serif", Font.BOLD, 42));
+      this.dc.drawString("WARIO WAREHOUSE", 450, 100);
+      
+      this.dc.setPaint(new Color(127, 0, 255));
+      this.dc.fillRect(450, 300, 250, 100);
+
+      this.dc.setPaint(Color.WHITE);
+      this.dc.drawString("E to PLAY", 450, 290);
+
+      if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()){
+        this.playGame();
         this.endScreen();
       }
       
@@ -140,6 +160,7 @@ public class Main {
             if(cursorY == 540) { //"EXIT" selected -- back to main menu
               done = true;
               System.out.println("exit controls");
+              this.dc.pause(200); //prevent double press
             }
           }
         }
@@ -198,14 +219,23 @@ public class Main {
     
     while(playing) {
       this.dc.clear();
-      this.resetDConsole();
       this.drawGameBoard(mapSquares);
+      this.resetDConsole();
 
       this.dc.setOrigin(DConsole.ORIGIN_LEFT);
+      this.dc.setFont(new Font("Dialog", Font.PLAIN, 20));
       //labels
       this.dc.drawString("Controls", 100, 550);
       this.dc.drawString("Start", 400, 550);
       this.dc.drawString("How To Play", 700, 550);
+      this.dc.drawString("Press E or SHIFT to Select", 330, 50);
+      this.dc.drawString("P1:", 40, 45);
+      this.dc.setPaint(Color.BLUE);
+      this.dc.fillEllipse(80, 50, 20, 20);
+      this.dc.setPaint(Color.BLACK);
+      this.dc.drawString("P2:", 820, 45);
+      this.dc.setPaint(Color.RED);
+      this.dc.fillEllipse(860, 50, 20, 20);
 
       //detect left/right keypresses
       if(keyCounter == 0) {
@@ -220,7 +250,7 @@ public class Main {
           p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX());
           p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY());
           System.out.println(p1.getBoardPos());
-          keyCounter = 8;
+          keyCounter = 4;
         }
       }
 
@@ -229,12 +259,13 @@ public class Main {
       }
 
       //draw cursor on labels at bottom of screen && check for keypresses to select hovered
+      this.dc.setPaint(Color.BLACK);
       switch(cursorPos) {
         case 0:
           this.dc.fillRect(75, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
             this.controlsMenu();
-            keyCounter = 8;
+            keyCounter = 4;
           }
           break;
 
@@ -242,17 +273,17 @@ public class Main {
           this.dc.fillRect(375, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
             if(this.pickGame() == 1) { //play random game and move winning player forward
-              p1.setBoardPos(p1.getBoardPos() + this.diceRoll(mapSquares)); //increase board position
+              p1.setBoardPos(p1.getBoardPos() + this.diceRoll(mapSquares, p1)); //increase board position
               p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX()); //new X
               p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY()); //new Y
 
             } else {
-              p2.setBoardPos(p2.getBoardPos() + this.diceRoll(mapSquares)); //increase bord position
+              p2.setBoardPos(p2.getBoardPos() + this.diceRoll(mapSquares, p2)); //increase bord position
               p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX()); //new X
               p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY()); //new Y
 
             }
-            keyCounter = 8;
+            keyCounter = 4;
           }
           if(p1.getBoardPos() == 58) { //p1 wins
             playing = false;
@@ -271,7 +302,7 @@ public class Main {
           this.dc.fillRect(675, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
             this.instructionsMenu();
-            keyCounter = 8;
+            keyCounter = 4;
           }
           break;
       }
@@ -279,11 +310,11 @@ public class Main {
       
       
       this.dc.redraw();
-      this.dc.pause(20);
+      this.dc.pause(40);
     }
   }
 
-  public int diceRoll(ArrayList<mapSquare> mapSquares) {
+  public int diceRoll(ArrayList<mapSquare> mapSquares, Player plr) {
     int cd = 0; //increase to slowdown
     int diceNum = 1;
     int result = this.rnd.nextInt(6) + 1;
@@ -309,11 +340,15 @@ public class Main {
       this.dc.pause(5 + cd);
     }
 
+    if(plr.getBoardPos() + diceNum > 58) {
+      diceNum = 58 - plr.getBoardPos();
+    }
     return diceNum;
     
   }
 
   public void drawGameBoard(ArrayList<mapSquare> mapSquares) {
+    this.resetDConsole();
     Player p1 = this.players.get(0);
     Player p2 = this.players.get(1);
     //draw image origin middle of screen
@@ -344,8 +379,34 @@ public class Main {
     this.dc.setOrigin(DConsole.ORIGIN_CENTER);
   }
 
-  public void instructionsMenu() { //to be made ./
+  public void instructionsMenu() { 
+    this.dc.pause(200); //prevent double press
     System.out.println("Running instructionsMenu");
+    this.resetDConsole();
+    this.dc.setFont(new Font("Dialog", Font.PLAIN, 20));
+    boolean waiting = true;
+    while(waiting) {
+      this.dc.clear();
+
+      this.dc.drawString("How To Play", 450, 50);
+      this.dc.setOrigin(DConsole.ORIGIN_LEFT);
+      this.dc.drawString("Return", 420, 550);
+      this.dc.fillRect(400, 555, 10, 5); //Cursor
+
+      this.dc.fillEllipse(180, 155, 8, 8);
+      this.dc.drawString("Win minigames to earn dice rolls", 200, 150); 
+      this.dc.fillRect(200, 185, 10, 5);
+      this.dc.drawString("Roll the dice to move forward", 220, 180);
+      this.dc.fillRect(200, 215, 10, 5);
+      this.dc.drawString("First to the end wins!", 220, 210);
+
+      if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()) {
+        waiting = false;
+        this.dc.pause(200); //prevent double press
+      }
+      
+      this.dc.redraw();
+    }
   }
 
   public void endScreen() { //make cool ./
