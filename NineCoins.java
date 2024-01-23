@@ -149,13 +149,20 @@ public class NineCoins extends baseGame {
     if (score1 > score2) {
       super.winner = 1;
       dc.clear();
+      dc.setPaint(new Color(255, 153, 204));
+      dc.fillRect(450, 300, 900, 600);
+      dc.setPaint(new Color(0, 0, 0));
       dc.drawString("player 1 wins", 450, 100);
+      
       dc.redraw();
       dc.pause(2000);
     }
     if (score2 > score1) {
       super.winner = 2;
       dc.clear();
+      dc.setPaint(new Color(255, 153, 204));
+      dc.fillRect(450, 300, 900, 600);
+      dc.setPaint(new Color(0, 0, 0));
       dc.drawString("player 2 wins", 450, 100);
       dc.redraw();
       dc.pause(2000);
