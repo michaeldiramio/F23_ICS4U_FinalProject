@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 
-public class gridSquare {
+public class GridSquare {
 
   DConsole dc;
   private int x;
@@ -12,7 +12,7 @@ public class gridSquare {
   private int state;
   private int opacity;
 
-  public gridSquare(DConsole dc, int x, int y, int size){
+  public GridSquare(DConsole dc, int x, int y, int size){
     this.dc = dc;
     this.x = x;
     this.y = y;

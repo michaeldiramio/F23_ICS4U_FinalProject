@@ -2,7 +2,7 @@ import DLibX.DConsole;
 import java.awt.*;
 import java.util.*;
 
-public class ticTacToe extends baseGame {
+public class TicTacToe extends baseGame {
 
   DConsole dc;
   Random randGen;
@@ -13,9 +13,9 @@ public class ticTacToe extends baseGame {
   private int timeout = 0;
   private int turns = 0;
 
-  private gridSquare[][] gameBoard = new gridSquare[3][3];
+  private GridSquare[][] gameBoard = new GridSquare[3][3];
   
-  public ticTacToe(DConsole dc, Player p1, Player p2){
+  public TicTacToe(DConsole dc, Player p1, Player p2){
     this.dc = dc;
     this.randGen = new Random();
     this.player1 = p1;
@@ -37,7 +37,7 @@ public class ticTacToe extends baseGame {
       xPosition += 150;
       for(int j = 0; j < this.gameBoard[i].length; j++){
         yPosition += 150;
-        this.gameBoard[i][j] = new gridSquare(dc, xPosition, yPosition, 100);
+        this.gameBoard[i][j] = new GridSquare(dc, xPosition, yPosition, 100);
       }
       yPosition = 0;
     }
