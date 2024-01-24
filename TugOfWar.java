@@ -68,7 +68,7 @@ public class TugOfWar extends baseGame {
         if (playerAScore == 1) {
           start = false; 
           centerX = 450;
-          this.winner = 1; 
+          super.winner = 1; 
         }
       } else if (centerX >= 790) {
         playerLScore++;
@@ -76,7 +76,7 @@ public class TugOfWar extends baseGame {
         if (playerLScore == 1) {
           start = false;
           centerX = 450;
-          this.winner = 2; 
+          super.winner = 2; 
         }
       }
 
