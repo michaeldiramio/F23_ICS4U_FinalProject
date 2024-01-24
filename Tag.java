@@ -3,7 +3,7 @@ import java.awt.geom.AffineTransform; // need this for rotation
 import java.awt.*; // need this to change stroke size or gradient
 import java.awt.Color;
 
-public class Tag extends baseGame {
+public class Tag extends BaseGame {
 
   //variables
   private DConsole dc;

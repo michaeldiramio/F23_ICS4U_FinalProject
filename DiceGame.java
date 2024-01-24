@@ -2,7 +2,7 @@ import DLibX.*;
 import java.awt.Color;
 import java.util.Random;
 
-public class DiceGame extends baseGame {
+public class DiceGame extends BaseGame {
 
 	private DConsole dc;
 	private Player player1;

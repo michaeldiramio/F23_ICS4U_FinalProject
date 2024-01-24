@@ -9,7 +9,7 @@ import java.io.PrintStream;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class DragRace extends baseGame{
+public class DragRace extends BaseGame{
 
   DConsole dc;
   private Player p1;

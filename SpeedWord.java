@@ -8,7 +8,7 @@ import java.util.Random;
 import java.io.PrintStream;
 
 //SpeedWord game
-public class SpeedWord extends baseGame {
+public class SpeedWord extends BaseGame {
   DConsole dc;
   Random RNG = new Random();
   private Player player1;

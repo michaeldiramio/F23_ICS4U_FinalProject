@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 
   private DConsole dc = new DConsole(900, 600);
-  private ArrayList<baseGame> games = new ArrayList<baseGame>();
+  private ArrayList<BaseGame> games = new ArrayList<BaseGame>();
   private ArrayList<Player> players = new ArrayList<Player>();
   private Random rnd = new Random();
   private int gameWinner = 0;
@@ -43,6 +43,8 @@ public class Main {
     this.games.add(new ShieldShooter (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new DiceGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new FlappyBirdGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new Dino (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new Tag (this.dc, this.players.get(0), this.players.get(1)));
 
     //run game loop
     System.out.println("Game initialized -- Running main loop");
@@ -57,19 +59,6 @@ public class Main {
       this.dc.setFont(new Font("Dialog", Font.PLAIN, 12));
       this.dc.setPaint(Color.BLACK);
       this.dc.setOrigin(DConsole.ORIGIN_CENTER);
-      this.dc.fillEllipse(225, 150, 50, 50); //temp visual
-
-      //temporary way to access controls screen
-      if(this.dc.isKeyPressed('C')) {
-        this.controlsMenu();
-      } else if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
-        this.games.get(sc.nextInt()).initialize();
-      } else if(this.dc.isKeyPressed('R')) {
-        this.pickGame();
-      } else if(this.dc.isKeyPressed('B')) {
-        this.playGame();
-        this.endScreen();
-      } 
 
       this.dc.setPaint(new Color(229, 204, 255));
       this.dc.fillRect(450, 300, 900, 600);
@@ -82,7 +71,7 @@ public class Main {
       this.dc.fillRect(450, 300, 250, 100);
 
       this.dc.setPaint(Color.WHITE);
-      this.dc.drawString("B to PLAY", 450, 290);
+      this.dc.drawString("E to PLAY", 450, 290);
 
       if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()){
         this.playGame();
@@ -225,11 +214,11 @@ public class Main {
       this.dc.drawString("How To Play", 700, 550);
       this.dc.drawString("Press E or SHIFT to Select", 330, 50);
       this.dc.drawString("P1:", 40, 45);
-      this.dc.setPaint(Color.BLUE);
+      this.dc.setPaint(Color.RED);
       this.dc.fillEllipse(80, 50, 20, 20);
       this.dc.setPaint(Color.BLACK);
       this.dc.drawString("P2:", 820, 45);
-      this.dc.setPaint(Color.RED);
+      this.dc.setPaint(Color.BLUE);
       this.dc.fillEllipse(860, 50, 20, 20);
 
       //detect left/right keypresses
@@ -456,7 +445,7 @@ public class Main {
         buttonSize = 15;
         // Reset arrays and intialize again
         if (this.dc.isMouseButton(1) ) {
-          this.games = new ArrayList<baseGame>();
+          this.games = new ArrayList<BaseGame>();
           this.players = new ArrayList<Player>();
           this.gameWinner = 0;
           this.initialize();

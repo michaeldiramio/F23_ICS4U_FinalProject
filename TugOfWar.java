@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 
-public class TugOfWar extends baseGame {
+public class TugOfWar extends BaseGame {
 
   //variables
   private DConsole dc;

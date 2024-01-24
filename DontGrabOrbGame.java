@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.util.Random;
 
-public class DontGrabOrbGame extends baseGame {
+public class DontGrabOrbGame extends BaseGame {
     DConsole dc;
     private Player player1;
     private Player player2;
@@ -26,9 +26,7 @@ public class DontGrabOrbGame extends baseGame {
       this.player2 = p2;
     }
 
-    public int getWinner() {
-      return winner; //super.winner to set winner
-    }
+    
 
     public void initialize() {
       x = r.nextInt(800) + 30;
