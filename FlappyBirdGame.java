@@ -149,8 +149,10 @@ public class FlappyBirdGame extends BaseGame {
 
     if (player1Won) {
       System.out.println("Player 1 wins!");
+      super.winner = 1;
     } else {
       System.out.println("Player 2 wins!");
+      super.winner = 2;
     }
 
     dc.pause(1000);
