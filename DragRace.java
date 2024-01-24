@@ -76,7 +76,7 @@ public class DragRace extends BaseGame{
       //Winner
       if (p1.getX() >= 835){
         dc.clear();
-        dc.drawString(("Player 2 won!"), 450, 300);
+        dc.drawString(("Player 1 won!"), 450, 300);
         dc.redraw();
         dc.pause(2000);
         super.winner = 1;
@@ -84,7 +84,7 @@ public class DragRace extends BaseGame{
         break;
       } else if (p2.getX() >= 835){
         dc.clear();
-        dc.drawString(("Player 1 won!"), 450, 300);
+        dc.drawString(("Player 2 won!"), 450, 300);
         dc.redraw();
         dc.pause(2000);
         super.winner = 2;
