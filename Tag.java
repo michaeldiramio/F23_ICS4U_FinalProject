@@ -115,7 +115,7 @@ public class Tag extends baseGame {
 
       if (distance < radiusSum) {
         isTagged = true;
-        this.winner = 1; 
+        super.winner = 1; 
       }
 
       // Draw updated state
@@ -124,7 +124,7 @@ public class Tag extends baseGame {
 
       elapsedTime = System.currentTimeMillis() - startTime;
       if (elapsedTime >= 10000) { // 10000 milliseconds (10 seconds) as an example
-        this.winner = 2; 
+        super.winner = 2; 
         isTagged = true; // set isTagged to true after 5 seconds
       } 
     }
