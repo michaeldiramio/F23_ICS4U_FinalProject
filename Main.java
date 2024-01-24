@@ -224,11 +224,11 @@ public class Main {
       this.dc.drawString("How To Play", 700, 550);
       this.dc.drawString("Press E or SHIFT to Select", 330, 50);
       this.dc.drawString("P1:", 40, 45);
-      this.dc.setPaint(Color.BLUE);
+      this.dc.setPaint(Color.RED);
       this.dc.fillEllipse(80, 50, 20, 20);
       this.dc.setPaint(Color.BLACK);
       this.dc.drawString("P2:", 820, 45);
-      this.dc.setPaint(Color.RED);
+      this.dc.setPaint(Color.BLUE);
       this.dc.fillEllipse(860, 50, 20, 20);
 
       //detect left/right keypresses

@@ -26,9 +26,7 @@ public class DontGrabOrbGame extends baseGame {
       this.player2 = p2;
     }
 
-    public int getWinner() {
-      return winner; //super.winner to set winner
-    }
+    
 
     public void initialize() {
       x = r.nextInt(800) + 30;

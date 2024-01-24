@@ -32,10 +32,6 @@ public class GrabOrb extends baseGame {
   
   }
 
-  public int getWinner() {
-    return winner; //super.winner to set winner
-  }
-
   public void initialize (){
     x = r.nextInt(600) + 100;
     y = r.nextInt(300) + 100;
