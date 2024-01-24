@@ -68,9 +68,7 @@ public class Main {
       } else if(this.dc.isKeyPressed('B')) {
         this.playGame();
         this.endScreen();
-      } else if(this.dc.isKeyPressed('E')) {
-        this.endScreen();
-      }
+      } 
 
       this.dc.setPaint(new Color(229, 204, 255));
       this.dc.fillRect(450, 300, 900, 600);
@@ -272,12 +270,15 @@ public class Main {
         case 1:
           this.dc.fillRect(375, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
-            if(this.pickGame() == 1) { //play random game and move winning player forward
+
+            int minigameWinner = this.pickGame();
+            
+            if(minigameWinner == 1) { //play random game and move winning player forward
               p1.setBoardPos(p1.getBoardPos() + this.diceRoll(mapSquares, p1)); //increase board position
               p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX()); //new X
               p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY()); //new Y
 
-            } else {
+            } else if(minigameWinner == 2) {
               p2.setBoardPos(p2.getBoardPos() + this.diceRoll(mapSquares, p2)); //increase bord position
               p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX()); //new X
               p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY()); //new Y

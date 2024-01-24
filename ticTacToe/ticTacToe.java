@@ -1,6 +1,5 @@
 import DLibX.DConsole;
-import java.awt.Color;
-import java.awt.geom.AffineTransform;
+import java.awt.*;
 import java.util.*;
 
 public class ticTacToe extends baseGame {
@@ -12,6 +11,7 @@ public class ticTacToe extends baseGame {
   private int activePlayer = 0;
   private boolean gameOver = false;
   private int timeout = 0;
+  private int turns = 0;
 
   private gridSquare[][] gameBoard = new gridSquare[3][3];
   
@@ -24,17 +24,20 @@ public class ticTacToe extends baseGame {
   
   public void initialize (){
     System.out.println("Initializing tictactoe");
-    
+
+    super.winner = 0;
     this.activePlayer = this.randGen.nextInt(2);
+    this.gameOver = false;
+    this.turns = 0;
     int xPosition = 150;
     int yPosition = 0;
     
     // Create new game board
-    for(int i = 0; i < gameBoard.length; i++){
+    for(int i = 0; i < this.gameBoard.length; i++){
       xPosition += 150;
-      for(int j = 0; j < gameBoard[i].length; j++){
+      for(int j = 0; j < this.gameBoard[i].length; j++){
         yPosition += 150;
-        gameBoard[i][j] = new gridSquare(dc, xPosition, yPosition, 100);
+        this.gameBoard[i][j] = new gridSquare(dc, xPosition, yPosition, 100);
       }
       yPosition = 0;
     }
@@ -46,58 +49,65 @@ public class ticTacToe extends baseGame {
 
     while(!gameOver){
 
-      dc.clear();
+      this.dc.clear();
       
       int mouseX = dc.getMouseXPosition();
       int mouseY = dc.getMouseYPosition();
 
       // Draw ticTacToe grid
-      dc.setPaint(Color.BLACK);
-      dc.fillRect(375, 300, 20, 450);
-      dc.fillRect(525, 300, 20, 450);
-      dc.fillRect(450, 225, 450, 20);
-      dc.fillRect(450, 375, 450, 20);
+      this.dc.setPaint(Color.BLACK);
+      this.dc.setFont(new Font("DialogInput", Font.BOLD, 25)); 
+      if(this.activePlayer == 0) {
+        this.dc.drawString("Player One's Turn", 450, 40);
+      } else {
+        this.dc.drawString("Player Two's Turn", 450, 40);
+      }
+      this.dc.fillRect(375, 300, 20, 450);
+      this.dc.fillRect(525, 300, 20, 450);
+      this.dc.fillRect(450, 225, 450, 20);
+      this.dc.fillRect(450, 375, 450, 20);
       
-      for(int i = 0; i < gameBoard.length; i++){
-        for(int j = 0; j < gameBoard[i].length; j++){
+      for(int i = 0; i < this.gameBoard.length; i++){
+        for(int j = 0; j < this.gameBoard[i].length; j++){
           
           //Check for mouse location
-          if(mouseX >= (gameBoard[i][j].getXPosition() - gameBoard[i][j].getSize()/2) 
-             && mouseX <= (gameBoard[i][j].getXPosition() + gameBoard[i][j].getSize()/2) 
-             && mouseY >= (gameBoard[i][j].getYPosition() - gameBoard[i][j].getSize()/2) 
-             && mouseY <= (gameBoard[i][j].getYPosition() + gameBoard[i][j].getSize()/2)){
+          if(mouseX >= (this.gameBoard[i][j].getXPosition() - this.gameBoard[i][j].getSize()/2) 
+             && mouseX <= (this.gameBoard[i][j].getXPosition() + this.gameBoard[i][j].getSize()/2) 
+             && mouseY >= (this.gameBoard[i][j].getYPosition() - this.gameBoard[i][j].getSize()/2) 
+             && mouseY <= (this.gameBoard[i][j].getYPosition() + this.gameBoard[i][j].getSize()/2)){
 
             // Change opacity to indicate selected square
-            gameBoard[i][j].setOpacity(25);
+            this.gameBoard[i][j].setOpacity(25);
             
             // Set square to active player / switch active player
-            if(dc.isMouseButton(1) && timeout <= 0 && gameBoard[i][j].getState() == 0){
-              gameBoard[i][j].setState(activePlayer);
-              if(activePlayer == 0){
-                activePlayer = 1;
+            if(this.dc.isMouseButton(1) && timeout <= 0 && this.gameBoard[i][j].getState() == 0){
+              this.gameBoard[i][j].setState(this.activePlayer);
+              if(this.activePlayer == 0){
+                this.activePlayer = 1;
               } else {
-                activePlayer = 0;
+                this.activePlayer = 0;
               }
-              timeout = 50;
+              this.timeout = 50;
+              this.turns++;
             }
-          } else if (gameBoard[i][j].getState() == 0){
-            gameBoard[i][j].setOpacity(0);
+          } else if (this.gameBoard[i][j].getState() == 0){
+            this.gameBoard[i][j].setOpacity(0);
           }
         }
       }  
 
       // Draw graphics for squares
-      for(int i = 0; i < gameBoard.length; i++){
-        for(int j = 0; j < gameBoard[i].length; j++){
-          gameBoard[i][j].drawSquare();
+      for(int i = 0; i < this.gameBoard.length; i++){
+        for(int j = 0; j < this.gameBoard[i].length; j++){
+          this.gameBoard[i][j].drawSquare();
         }
       }  
 
       this.checkWinner();
 
-      timeout--;
-      dc.redraw();
-      dc.pause(10);
+      this.timeout--;
+      this.dc.redraw();
+      this.dc.pause(10);
     }
     
   }
@@ -108,14 +118,14 @@ public class ticTacToe extends baseGame {
     int p2Squares = 0;
     
     // --- Check Columns ---
-    for(int i = 0; i < gameBoard.length; i++){
+    for(int i = 0; i < this.gameBoard.length; i++){
       p1Squares = 0;
       p2Squares = 0;
       
-      for (int j = 0; j < gameBoard[i].length; j++){
-        if(gameBoard[i][j].getState() == 1){
+      for (int j = 0; j < this.gameBoard[i].length; j++){
+        if(this.gameBoard[i][j].getState() == 1){
           p1Squares++;
-        } else if(gameBoard[i][j].getState() == 2){
+        } else if(this.gameBoard[i][j].getState() == 2){
           p2Squares++;
         }
       }
@@ -129,14 +139,14 @@ public class ticTacToe extends baseGame {
     }
     
     // --- Check Rows ---
-    for(int i = 0; i < gameBoard.length; i++){
+    for(int i = 0; i < this.gameBoard.length; i++){
       p1Squares = 0;
       p2Squares = 0;
       
-      for (int j = 0; j < gameBoard[i].length; j++){
-        if(gameBoard[j][i].getState() == 1){
+      for (int j = 0; j < this.gameBoard[i].length; j++){
+        if(this.gameBoard[j][i].getState() == 1){
           p1Squares++;
-        } else if(gameBoard[j][i].getState() == 2){
+        } else if(this.gameBoard[j][i].getState() == 2){
           p2Squares++;
         }
       }
@@ -152,10 +162,10 @@ public class ticTacToe extends baseGame {
     // --- Check Diagonal 1 \ ---
     p1Squares = 0;
     p2Squares = 0;
-    for(int i = 0; i < gameBoard.length; i++){
-      if(gameBoard[i][i].getState() == 1){
+    for(int i = 0; i < this.gameBoard.length; i++){
+      if(this.gameBoard[i][i].getState() == 1){
         p1Squares++;
-      } else if(gameBoard[i][i].getState() == 2){
+      } else if(this.gameBoard[i][i].getState() == 2){
         p2Squares++;
       }
 
@@ -171,10 +181,10 @@ public class ticTacToe extends baseGame {
     // --- Check Diagonal 2 / ---
     p1Squares = 0;
     p2Squares = 0;
-    for(int i = 0, j = 2; i < gameBoard.length; i++, j--){
-      if(gameBoard[i][j].getState() == 1){
+    for(int i = 0, j = 2; i < this.gameBoard.length; i++, j--){
+      if(this.gameBoard[i][j].getState() == 1){
         p1Squares++;
-      } else if(gameBoard[i][j].getState() == 2){
+      } else if(this.gameBoard[i][j].getState() == 2){
         p2Squares++;
       }
     }
@@ -186,10 +196,15 @@ public class ticTacToe extends baseGame {
       super.winner = 2;
     }
 
+
+    if(this.turns == 9 && super.winner == 0){
+      super.winner = -1;
+    }
     // Set game winner / End game
     if(super.winner != 0){
       gameOver = true;
     }
+
   }  
   
 }
