@@ -26,6 +26,8 @@ public class TugOfWar extends baseGame {
     this.player2.setX(0);
     this.player1.setY(0);
     this.player2.setY(0);
+    playerAScore = 0;
+    playerLScore = 0;
     this.run(); 
   }
   public void run() {
@@ -34,29 +36,29 @@ public class TugOfWar extends baseGame {
     this.dc.setOrigin(DConsole.ORIGIN_CENTER);
 
     while(start) {
-      dc.clear();
+      this.dc.clear();
       // draw the lines for each team 
-      dc.setPaint(Color.BLUE);
-      dc.fillRect(120, 300, 5, 700);
-      dc.setPaint(Color.GREEN);
-      dc.fillRect(780, 300, 5, 700);
+      this.dc.setPaint(Color.BLUE);
+      this.dc.fillRect(120, 300, 5, 700);
+      this.dc.setPaint(Color.GREEN);
+      this.dc.fillRect(780, 300, 5, 700);
 
       // draw the rope 
-      dc.setPaint(Color.BLACK);
-      dc.fillRect(centerX, centerY, 890, 5);
-      dc.setPaint(Color.RED);
-      dc.fillRect(centerX, centerY, 5, 30);
+      this.dc.setPaint(Color.BLACK);
+      this.dc.fillRect(centerX, centerY, 890, 5);
+      this.dc.setPaint(Color.RED);
+      this.dc.fillRect(centerX, centerY, 5, 30);
 
       // Display scores
-      dc.setPaint(Color.BLACK);
-      dc.drawString("Player A: " + playerAScore, 160, 20);
-      dc.drawString("Player L: " + playerLScore, 740, 20);
+      this.dc.setPaint(Color.BLACK);
+      this.dc.drawString("Player A: " + playerAScore, 160, 20);
+      this.dc.drawString("Player L: " + playerLScore, 740, 20);
 
-      if (dc.isKeyPressed('A')) {
+      if (this.dc.isKeyPressed('A')) {
         centerX = centerX - 2;  // move to left
       }
        // Check for player input
-      if (dc.isKeyPressed('L')) {
+      if (this.dc.isKeyPressed('L')) {
         centerX = centerX + 2; // move to right
       }
 
@@ -74,13 +76,13 @@ public class TugOfWar extends baseGame {
         if (playerLScore == 1) {
           start = false;
           centerX = 450;
-          this.winner = 1; 
+          this.winner = 2; 
         }
       }
 
       // Draw updated state
-      dc.redraw();
-      dc.pause(20); // Adjust the speed of the game by changing the pause duration
+      this.dc.redraw();
+      this.dc.pause(20); // Adjust the speed of the game by changing the pause duration
     }
   }
 }
