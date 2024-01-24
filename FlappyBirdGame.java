@@ -126,11 +126,11 @@ public class FlappyBirdGame extends baseGame {
         playing = false; // Game over if bird2 hits top or bottom
       }
 
-      if ((obstacleX < bird1Radius && obstacleX + obstacleWidth > 0)) {
+      if (obstacleX < bird1Radius && bird1Y < 450) {
         playing = false;
       }
 
-      if ((obstacleX < bird2Radius && obstacleX + obstacleWidth > 0)) {
+      if (obstacleX < bird2Radius && bird2Y > 150) {
         playing = false;
       }
 
@@ -145,6 +145,14 @@ public class FlappyBirdGame extends baseGame {
       dc.fillRect(obstacleX, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
       dc.fillRect(obstacleX + 500, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
       dc.fillRect(obstacleX + 500, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
+      dc.fillRect(obstacleX + 1000, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
+      dc.fillRect(obstacleX + 1000, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
+      dc.fillRect(obstacleX + 1500, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
+      dc.fillRect(obstacleX + 1500, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
+      dc.fillRect(obstacleX + 2000, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
+      dc.fillRect(obstacleX + 2000, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
+      dc.fillRect(obstacleX + 2500, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
+      dc.fillRect(obstacleX + 2500, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
 
       // Update display
       dc.redraw();
