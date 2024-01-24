@@ -385,17 +385,22 @@ public class Main {
     while(waiting) {
       this.dc.clear();
 
-      this.dc.drawString("How To Play", 450, 50);
+      this.dc.setPaint(new Color(229, 204, 255));
+      this.dc.fillRect(0, 300, 900, 600);
+      this.dc.setPaint(Color.BLACK);
+      this.dc.setFont(new Font("Serif", Font.BOLD, 17));
+      this.dc.drawString("How To Play", 385, 50);
       this.dc.setOrigin(DConsole.ORIGIN_LEFT);
       this.dc.drawString("Return", 420, 550);
       this.dc.fillRect(400, 555, 10, 5); //Cursor
 
       this.dc.fillEllipse(180, 155, 8, 8);
-      this.dc.drawString("Win minigames to earn dice rolls", 200, 150); 
+      this.dc.drawString("Win short competitive minigames to earn dice rolls!", 200, 150); 
       this.dc.fillRect(200, 185, 10, 5);
-      this.dc.drawString("Roll the dice to move forward", 220, 180);
+      this.dc.drawString("You can use these dice roll to roll the dice and move forward!", 220, 180);
       this.dc.fillRect(200, 215, 10, 5);
-      this.dc.drawString("First to the end wins!", 220, 210);
+      this.dc.drawString("The first player to reach the end wins of the board wins", 220, 210);
+       this.dc.drawString("and gains bragging rights!", 220, 240);
 
       if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()) {
         waiting = false;
