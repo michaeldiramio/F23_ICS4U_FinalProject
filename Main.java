@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 
   private DConsole dc = new DConsole(900, 600);
-  private ArrayList<baseGame> games = new ArrayList<baseGame>();
+  private ArrayList<BaseGame> games = new ArrayList<BaseGame>();
   private ArrayList<Player> players = new ArrayList<Player>();
   private Random rnd = new Random();
   private int gameWinner = 0;
@@ -445,7 +445,7 @@ public class Main {
         buttonSize = 15;
         // Reset arrays and intialize again
         if (this.dc.isMouseButton(1) ) {
-          this.games = new ArrayList<baseGame>();
+          this.games = new ArrayList<BaseGame>();
           this.players = new ArrayList<Player>();
           this.gameWinner = 0;
           this.initialize();

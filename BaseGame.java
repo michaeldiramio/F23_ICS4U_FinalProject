@@ -7,7 +7,7 @@ public abstract class BaseGame {
 
   public int winner;
 
-  public baseGame() {
+  public BaseGame() {
 
   }
 
