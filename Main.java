@@ -42,6 +42,9 @@ public class Main {
     this.games.add(new GuessingGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new ShieldShooter (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new DiceGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new FlappyBirdGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new Dino (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new Tag (this.dc, this.players.get(0), this.players.get(1)));
 
     //run game loop
     System.out.println("Game initialized -- Running main loop");
@@ -56,19 +59,6 @@ public class Main {
       this.dc.setFont(new Font("Dialog", Font.PLAIN, 12));
       this.dc.setPaint(Color.BLACK);
       this.dc.setOrigin(DConsole.ORIGIN_CENTER);
-      this.dc.fillEllipse(225, 150, 50, 50); //temp visual
-
-      //temporary way to access controls screen
-      if(this.dc.isKeyPressed('C')) {
-        this.controlsMenu();
-      } else if(this.dc.isKeyPressed('F')) { //Type in arraySlot into console
-        this.games.get(sc.nextInt()).initialize();
-      } else if(this.dc.isKeyPressed('R')) {
-        this.pickGame();
-      } else if(this.dc.isKeyPressed('B')) {
-        this.playGame();
-        this.endScreen();
-      } 
 
       this.dc.setPaint(new Color(229, 204, 255));
       this.dc.fillRect(450, 300, 900, 600);
@@ -81,7 +71,7 @@ public class Main {
       this.dc.fillRect(450, 300, 250, 100);
 
       this.dc.setPaint(Color.WHITE);
-      this.dc.drawString("B to PLAY", 450, 290);
+      this.dc.drawString("E to PLAY", 450, 290);
 
       if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()){
         this.playGame();
