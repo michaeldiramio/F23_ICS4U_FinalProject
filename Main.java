@@ -81,7 +81,7 @@ public class Main {
       this.dc.fillRect(450, 300, 250, 100);
 
       this.dc.setPaint(Color.WHITE);
-      this.dc.drawString("E to PLAY", 450, 290);
+      this.dc.drawString("B to PLAY", 450, 290);
 
       if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()){
         this.playGame();
