@@ -35,21 +35,21 @@ public class DiceGame extends baseGame {
 		boolean playing = true;
 		while(start){
 
-			int mouseX = dc.getMouseXPosition();
+			int mouseX = dc.getMouseXPosition();//find mouse
 			int mouseY = dc.getMouseYPosition();
 
 			dc.setOrigin(DConsole.ORIGIN_CENTER);
 		dc.setPaint(new Color(58, 206, 250));
 		this.dc.fillRect(450, 300, 1000, 700);
 
-			dc.setOrigin(DConsole.ORIGIN_LEFT);
+			dc.setOrigin(DConsole.ORIGIN_LEFT);//set origin to make triangles
 
 			dc.setPaint(Color.WHITE);
-			int[] bgx = {450, 525, 525, 450, 375, 375};
+			int[] bgx = {450, 525, 525, 450, 375, 375};//background of die
 			int[] bgy = {338, 390, 505, 560, 505, 390};
 			dc.fillPolygon(bgx, bgy);
 
-			dc.setPaint(Color.BLACK);
+			dc.setPaint(Color.BLACK);//die lines
 			int[] xs = {400, 450, 500};
 			int[] ys = {450, 325, 450};
 			dc.fillPolygon(xs, ys);
@@ -85,7 +85,7 @@ public class DiceGame extends baseGame {
 
 
 
-			dc.drawLine(150, 60, 150, 460);
+			dc.drawLine(150, 60, 150, 460);//sliders for players
 			if(mouseX <= 200
 					&& mouseX >= 100
 					&& mouseY >= 60
@@ -128,7 +128,8 @@ public class DiceGame extends baseGame {
 					dc.drawString(random, 450,350);
 					dc.redraw();
 					dc.setPaint(Color.BLACK);
-					if(p1Count == random){
+					
+					if(p1Count == random){//code for who wins
 						super.winner = 1;
 						dc.drawString("Player One Wins", 450 , 200);
 						dc.redraw();

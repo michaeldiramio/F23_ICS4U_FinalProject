@@ -21,6 +21,8 @@ public class ClickGame extends baseGame {
   }
 
   public void initialize() {
+    player1count = 0;
+    player2count = 0;
     System.out.println("running");
     this.run();
   }
