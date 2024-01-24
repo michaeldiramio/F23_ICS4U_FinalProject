@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
-public class FlappyBirdGame extends baseGame {
+public class FlappyBirdGame extends BaseGame {
   // dc with players
   private DConsole dc;
   private Player p1;
@@ -166,8 +166,10 @@ public class FlappyBirdGame extends baseGame {
 
     if (player1Won) {
       System.out.println("Player 1 wins!");
+      super.winner = 1;
     } else {
       System.out.println("Player 2 wins!");
+      super.winner = 2;
     }
 
     dc.pause(1000);

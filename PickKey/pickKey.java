@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.awt.*;
 
-public class pickKey extends baseGame {
+public class pickKey extends BaseGame {
 
   private DConsole dc;
   private Player p1;

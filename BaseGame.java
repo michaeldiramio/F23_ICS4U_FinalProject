@@ -3,11 +3,11 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 
-public abstract class baseGame {
+public abstract class BaseGame {
 
   public int winner;
 
-  public baseGame() {
+  public BaseGame() {
 
   }
 

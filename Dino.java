@@ -2,7 +2,7 @@ import DLibX.*;
 import java.awt.Color;
 import java.util.Random;
 
-public class Dino extends baseGame {
+public class Dino extends BaseGame {
 
 	private DConsole dc;
 	private Player player1;

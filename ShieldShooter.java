@@ -8,7 +8,7 @@ import java.util.Random;
 import java.io.PrintStream;
 
 //ShieldShooter game
-public class ShieldShooter extends baseGame {
+public class ShieldShooter extends BaseGame {
   DConsole dc;
   private Player p1;
   private Player p2;

@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 
-public class TugOfWar extends baseGame {
+public class TugOfWar extends BaseGame {
 
   //variables
   private DConsole dc;
@@ -66,17 +66,25 @@ public class TugOfWar extends baseGame {
       if (centerX <= 110) {
         playerAScore++; 
         if (playerAScore == 1) {
+          dc.clear();
+          dc.drawString(("Player 1 won"), 450, 300);
+          dc.redraw();
+          dc.pause(2000);
           start = false; 
           centerX = 450;
-          this.winner = 1; 
+          super.winner = 1; 
         }
       } else if (centerX >= 790) {
         playerLScore++;
         centerX = 250;
         if (playerLScore == 1) {
+          dc.clear();
+          dc.drawString(("Player 2 won"), 450, 300);
+          dc.redraw();
+          dc.pause(2000);
           start = false;
           centerX = 450;
-          this.winner = 2; 
+          super.winner = 2; 
         }
       }
 

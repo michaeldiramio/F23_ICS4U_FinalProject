@@ -9,7 +9,7 @@ import java.io.PrintStream;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class MasherGame extends baseGame {
+public class MasherGame extends BaseGame {
   //dc and 2 players
   DConsole dc;
   private Player p1;

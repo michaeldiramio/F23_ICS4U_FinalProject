@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.util.Random;
 
-public class DontGrabOrbGame extends baseGame {
+public class DontGrabOrbGame extends BaseGame {
     DConsole dc;
     private Player player1;
     private Player player2;
@@ -26,9 +26,7 @@ public class DontGrabOrbGame extends baseGame {
       this.player2 = p2;
     }
 
-    public int getWinner() {
-      return winner; //super.winner to set winner
-    }
+    
 
     public void initialize() {
       x = r.nextInt(800) + 30;
@@ -93,6 +91,10 @@ public class DontGrabOrbGame extends baseGame {
         //Orb Grab Check
         if (this.playy >= (this.y - 25) && this.playy <= (this.y + 25)) {
           if (this.playx >= (this.x - 25) && this.playx <= (this.x + 25)) {
+            dc.clear();
+            dc.drawString(("Player 2 won"), 450, 300);
+            dc.redraw();
+            dc.pause(2000);
             playy = -10000;
             playx = -10000;
             super.winner = 2;
@@ -106,6 +108,10 @@ public class DontGrabOrbGame extends baseGame {
         }
         if (this.playy2 >= (this.y - 25) && this.playy2 <= (this.y + 25)) {
           if (this.playx2 >= (this.x - 25) && this.playx2 <= (this.x + 25)) {
+            dc.clear();
+            dc.drawString(("Player 1 won"), 450, 300);
+            dc.redraw();
+            dc.pause(2000);
             playy2 = -10000;
             playx2 = -10000;
             super.winner = 1;

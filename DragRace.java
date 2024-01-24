@@ -9,7 +9,7 @@ import java.io.PrintStream;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class DragRace extends baseGame{
+public class DragRace extends BaseGame{
 
   DConsole dc;
   private Player p1;
@@ -69,14 +69,14 @@ public class DragRace extends baseGame{
       }
 
       //Player 2 Movement
-      if(p2.downPressed()) {
+      if(p2.upPressed()) {
         p2.setX(p2.getX() + randomNum.nextInt(3) + 1);
       }
 
       //Winner
       if (p1.getX() >= 835){
         dc.clear();
-        dc.drawString(("Player 2 won!"), 450, 300);
+        dc.drawString(("Player 1 won!"), 450, 300);
         dc.redraw();
         dc.pause(2000);
         super.winner = 1;
@@ -84,7 +84,7 @@ public class DragRace extends baseGame{
         break;
       } else if (p2.getX() >= 835){
         dc.clear();
-        dc.drawString(("Player 1 won!"), 450, 300);
+        dc.drawString(("Player 2 won!"), 450, 300);
         dc.redraw();
         dc.pause(2000);
         super.winner = 2;
