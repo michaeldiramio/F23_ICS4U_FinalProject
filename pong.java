@@ -26,9 +26,9 @@ public class pong extends baseGame {
     boolean playing = true;
     boolean firstTime = true;
     int ballX = 450;
-    int ballXChange = 5;
+    int ballXChange = 4;
     int ballY = 300;
-    int ballYChange = 5;
+    int ballYChange = 4;
     int paddleLY = 300;
     int paddleRY = 300;
     int winner = 0;
@@ -80,27 +80,27 @@ public class pong extends baseGame {
       } // Stopping the right paddle from going off the screen
 
       if (ballX >= 878) {
-       ballXChange = -5;
+       ballXChange = -4;
      }
      if (ballX <= 24) {
-        ballXChange = 5;
+        ballXChange = 4;
       }
       if (ballY >= 578) {
-        ballYChange = -5;
+        ballYChange = -4;
      }
      if (ballY <= 24) {
-       ballYChange = 5;
+       ballYChange = 4;
      } // Stopping the ball from going off screen
 
       if (ballX >= 856 &&
           ballY >= paddleRY - 60 &&
           ballY <= paddleRY + 60) {
-        ballXChange = -7;
+        ballXChange = -4;
      } // Right paddle collision
      if (ballX <= 54 &&
           ballY >= paddleLY - 60 &&
           ballY <= paddleLY + 60) {
-        ballXChange = 7;
+        ballXChange = 4;
       } // Left paddle collision
 
       if (ballX >= 876) {

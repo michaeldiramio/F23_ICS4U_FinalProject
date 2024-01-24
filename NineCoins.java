@@ -26,6 +26,8 @@ public class NineCoins extends baseGame {
     System.out.println("running");
     player1count = 0;
     player2count = 0;
+    score1 = 0;
+    score2 = 0;
     player1.setX(100);
     player1.setY(550);
     player2.setX(800);
