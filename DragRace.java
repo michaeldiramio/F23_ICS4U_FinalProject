@@ -52,6 +52,9 @@ public class DragRace extends baseGame{
       dc.setPaint(new Color(40, 175, 187));
       this.dc.fillRect(p2.getX(), 400, 30, 20);
 
+      this.dc.setPaint(Color.black);
+      this.dc.drawString("Up Botton to Drive", 385, 50);
+
       //Player 1 Movement
       if(p1.upPressed()) {
         p1.setX(p1.getX() + randomNum.nextInt(3) + 1);
