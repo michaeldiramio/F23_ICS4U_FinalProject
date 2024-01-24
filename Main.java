@@ -42,6 +42,7 @@ public class Main {
     this.games.add(new GuessingGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new ShieldShooter (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new DiceGame (this.dc, this.players.get(0), this.players.get(1)));
+    this.games.add(new FlappyBirdGame (this.dc, this.players.get(0), this.players.get(1)));
 
     //run game loop
     System.out.println("Game initialized -- Running main loop");
