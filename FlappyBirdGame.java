@@ -46,9 +46,18 @@ public class FlappyBirdGame extends baseGame {
     for (int run = 1; run <= 5; run++) {
       System.out.println("Run " + run);
       boolean player1Won = runRound();
-      if (player1Won) {
+      if (player1Won) {// text font setting
+        dc.clear();
+        dc.setFont(new Font("Dialog", Font.BOLD, 30));
+        dc.drawString("This round won Player 1", 450, 250);
+        dc.redraw();
+        dc.pause(2500);
         player1Wins++;
-      } else {
+      } else {dc.clear();
+        dc.setFont(new Font("Dialog", Font.BOLD, 30));
+        dc.drawString("This round won Player 2", 450, 250);
+        dc.redraw();
+        dc.pause(2500);
         player2Wins++;
       }
     }
@@ -82,7 +91,7 @@ public class FlappyBirdGame extends baseGame {
     int gapHeight = 300;
     int bird1Radius = 20;
     int bird2Radius = 20;
-    int obstacleSpeed = 6; // Adjust obstacle speed
+    int obstacleSpeed = 6;
 
     // text font setting
     dc.setFont(new Font("Dialog", Font.BOLD, 30));
