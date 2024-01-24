@@ -3,20 +3,19 @@ import java.awt.*;
 import java.util.*;
 
 public class Main {
-  
+
   private DConsole dc = new DConsole(900, 600);
   private ArrayList<baseGame> games = new ArrayList<baseGame>();
   private ArrayList<Player> players = new ArrayList<Player>();
   private Random rnd = new Random();
   private int gameWinner = 0;
-  
 
-	public static void main(String[] args) {
+  public static void main(String[] args) {
 
-				Main m = new Main();
+    Main m = new Main();
 
-		m.initialize();
-	}
+    m.initialize();
+  }
 
   //first time setup
   public void initialize() {
@@ -40,17 +39,16 @@ public class Main {
     this.games.add(new DontGrabOrbGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new SpeedWord (this.dc, this.players.get(0), this.players.get(1), this.rnd));
     this.games.add(new TugOfWar (this.dc, this.players.get(0), this.players.get(1)));
-    this.games.add(new Tag (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new GuessingGame (this.dc, this.players.get(0), this.players.get(1)));
     this.games.add(new ShieldShooter (this.dc, this.players.get(0), this.players.get(1)));
-		this.games.add(new DiceGame (this.dc, this.players.get(0), this.players.get(1)));
-    
+    this.games.add(new DiceGame (this.dc, this.players.get(0), this.players.get(1)));
+
     //run game loop
     System.out.println("Game initialized -- Running main loop");
     System.out.println("Playing with " + this.games.size() + " minigames!");
     this.runGame();
   }
-  
+
   public void runGame() {
     Scanner sc = new Scanner(System.in);
     while(true) {
@@ -59,7 +57,7 @@ public class Main {
       this.dc.setPaint(Color.BLACK);
       this.dc.setOrigin(DConsole.ORIGIN_CENTER);
       this.dc.fillEllipse(225, 150, 50, 50); //temp visual
-  
+
       //temporary way to access controls screen
       if(this.dc.isKeyPressed('C')) {
         this.controlsMenu();
@@ -70,9 +68,7 @@ public class Main {
       } else if(this.dc.isKeyPressed('B')) {
         this.playGame();
         this.endScreen();
-      } else if(this.dc.isKeyPressed('E')) {
-        this.endScreen();
-      }
+      } 
 
       this.dc.setPaint(new Color(229, 204, 255));
       this.dc.fillRect(450, 300, 900, 600);
@@ -80,18 +76,18 @@ public class Main {
       this.dc.setPaint(Color.black);
       dc.setFont(new Font("Serif", Font.BOLD, 42));
       this.dc.drawString("WARIO WAREHOUSE", 450, 100);
-      
+
       this.dc.setPaint(new Color(127, 0, 255));
       this.dc.fillRect(450, 300, 250, 100);
 
       this.dc.setPaint(Color.WHITE);
-      this.dc.drawString("E to PLAY", 450, 290);
+      this.dc.drawString("B to PLAY", 450, 290);
 
       if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()){
         this.playGame();
         this.endScreen();
       }
-      
+
       this.dc.redraw();
       this.dc.pause(20);
     }
@@ -111,11 +107,7 @@ public class Main {
     int gameNum = rnd.nextInt(this.games.size());
     this.games.get(gameNum).initialize();
     int winner = this.games.get(gameNum).getWinner();
-    if(winner == 1) {
-      System.out.println("Player 1 won");
-    } else {
-      System.out.println("Player 2 won");
-    }
+    System.out.println("Player " + winner + " won");
     return winner;
   }
 
@@ -125,7 +117,7 @@ public class Main {
     int cursorX = 120;
     int cursorY = 540;
     boolean done = false;
-    
+
     while(!done) {
       //menu background
       this.dc.setPaint(Color.black);
@@ -166,7 +158,7 @@ public class Main {
             }
           }
         }
-  
+
       }
       if(keyCounter > 0) { //delaying repeat key presses
         keyCounter--;
@@ -183,8 +175,8 @@ public class Main {
   //game in-progress
   public void playGame() {
     boolean playing = true;
-    
-  
+
+
     //make the squares for gameboard
     int counter = 0;
     int rowNum = 0;
@@ -193,7 +185,7 @@ public class Main {
     int cursorPos = 0;
     int keyCounter = 20;
     ArrayList<mapSquare> mapSquares = new ArrayList<mapSquare>();
- 
+
     //draw game squares
     //draws 4 rows of 14 with a connecting square to go downwards
     //squares are stored in order in ArrayList mapSquares to allow for easy movement
@@ -218,7 +210,7 @@ public class Main {
       }
       counter++;
     }
-    
+
     while(playing) {
       this.dc.clear();
       this.drawGameBoard(mapSquares);
@@ -274,12 +266,15 @@ public class Main {
         case 1:
           this.dc.fillRect(375, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
-            if(this.pickGame() == 1) { //play random game and move winning player forward
+
+            int minigameWinner = this.pickGame();
+
+            if(minigameWinner == 1) { //play random game and move winning player forward
               p1.setBoardPos(p1.getBoardPos() + this.diceRoll(mapSquares, p1)); //increase board position
               p1.setBoardX(mapSquares.get(p1.getBoardPos()).getX()); //new X
               p1.setBoardY(mapSquares.get(p1.getBoardPos()).getY()); //new Y
 
-            } else {
+            } else if(minigameWinner == 2) {
               p2.setBoardPos(p2.getBoardPos() + this.diceRoll(mapSquares, p2)); //increase bord position
               p2.setBoardX(mapSquares.get(p2.getBoardPos()).getX()); //new X
               p2.setBoardY(mapSquares.get(p2.getBoardPos()).getY()); //new Y
@@ -299,7 +294,7 @@ public class Main {
             this.dc.pause(2000);
           }
           break;
-          
+
         case 2:
           this.dc.fillRect(675, 550, 20, 3);
           if((p1.selectPressed() || p2.selectPressed()) && keyCounter == 0) {
@@ -309,8 +304,8 @@ public class Main {
           break;
       }
       this.dc.setOrigin(DConsole.ORIGIN_CENTER);
-      
-      
+
+
       this.dc.redraw();
       this.dc.pause(40);
     }
@@ -320,7 +315,7 @@ public class Main {
     int cd = 0; //increase to slowdown
     int diceNum = 1;
     int result = this.rnd.nextInt(6) + 1;
-    
+
     while (cd < 400 || diceNum != result) { //until correct dice showed after cd reached 400
       //rotate through 6 dice
       diceNum++;
@@ -346,7 +341,7 @@ public class Main {
       diceNum = 58 - plr.getBoardPos();
     }
     return diceNum;
-    
+
   }
 
   public void drawGameBoard(ArrayList<mapSquare> mapSquares) {
@@ -390,23 +385,28 @@ public class Main {
     while(waiting) {
       this.dc.clear();
 
-      this.dc.drawString("How To Play", 450, 50);
+      this.dc.setPaint(new Color(229, 204, 255));
+      this.dc.fillRect(0, 300, 900, 600);
+      this.dc.setPaint(Color.BLACK);
+      this.dc.setFont(new Font("Serif", Font.BOLD, 17));
+      this.dc.drawString("How To Play", 385, 50);
       this.dc.setOrigin(DConsole.ORIGIN_LEFT);
       this.dc.drawString("Return", 420, 550);
       this.dc.fillRect(400, 555, 10, 5); //Cursor
 
       this.dc.fillEllipse(180, 155, 8, 8);
-      this.dc.drawString("Win minigames to earn dice rolls", 200, 150); 
+      this.dc.drawString("Win short competitive minigames to earn dice rolls!", 200, 150); 
       this.dc.fillRect(200, 185, 10, 5);
-      this.dc.drawString("Roll the dice to move forward", 220, 180);
+      this.dc.drawString("You can use these dice roll to roll the dice and move forward!", 220, 180);
       this.dc.fillRect(200, 215, 10, 5);
-      this.dc.drawString("First to the end wins!", 220, 210);
+      this.dc.drawString("The first player to reach the end wins of the board wins", 220, 210);
+       this.dc.drawString("and gains bragging rights!", 220, 240);
 
       if(this.players.get(0).selectPressed() || this.players.get(1).selectPressed()) {
         waiting = false;
         this.dc.pause(200); //prevent double press
       }
-      
+
       this.dc.redraw();
     }
   }
@@ -414,7 +414,7 @@ public class Main {
   public void endScreen() { //make cool ./
     System.out.println("Running endScreen");
     int buttonSize = 0;
-    
+
     while(true) {
       this.dc.clear();
       this.resetDConsole();
@@ -463,10 +463,10 @@ public class Main {
       } else {
         buttonSize = 0;
       }
-      
+
       this.dc.redraw();
       this.dc.pause(20);
     }
   }
-  
+
 }

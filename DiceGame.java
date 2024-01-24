@@ -157,13 +157,13 @@ public class DiceGame extends baseGame {
               dc.pause(2000);
 							start = false;
 							playing = false;
-						} else if (p1Count < p2Count){
+						} else { //if tie, p1 wins
               dc.pause(1500);
               dc.clear();
-              super.winner = 1;
-              dc.drawString("Player One Wins", 450 , 300);
-              dc.redraw();
-              dc.pause(2000);
+							super.winner = 1;
+							dc.drawString("Player One Wins", 450, 200);
+							dc.redraw();
+							dc.pause(4000);
 							start = false;
 							playing = false;
 						}

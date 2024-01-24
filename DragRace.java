@@ -69,7 +69,7 @@ public class DragRace extends baseGame{
       }
 
       //Player 2 Movement
-      if(p2.downPressed()) {
+      if(p2.upPressed()) {
         p2.setX(p2.getX() + randomNum.nextInt(3) + 1);
       }
 
