@@ -107,11 +107,7 @@ public class Main {
     int gameNum = rnd.nextInt(this.games.size());
     this.games.get(gameNum).initialize();
     int winner = this.games.get(gameNum).getWinner();
-    if(winner == 1) {
-      System.out.println("Player 1 won");
-    } else {
-      System.out.println("Player 2 won");
-    }
+    System.out.println("Player " + winner + " won");
     return winner;
   }
 
