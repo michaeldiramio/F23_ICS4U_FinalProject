@@ -13,7 +13,7 @@ public class ticTacToe extends baseGame {
   private int timeout = 0;
   private int turns = 0;
 
-  private GridSquare[][] gameBoard = new gridSquare[3][3];
+  private gridSquare[][] gameBoard = new gridSquare[3][3];
 
   public ticTacToe(DConsole dc, Player p1, Player p2){
     this.dc = dc;
