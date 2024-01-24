@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.awt.*;
 
-public class pong extends baseGame {
+public class pong extends BaseGame {
 
   private DConsole dc;
   private Player p1;

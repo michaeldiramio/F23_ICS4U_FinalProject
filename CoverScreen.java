@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.awt.*;
 
-public class CoverScreen extends baseGame {
+public class CoverScreen extends BaseGame {
   // variablle
   DConsole dc;
   private Player player1;

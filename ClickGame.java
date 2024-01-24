@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.awt.*;
 
-public class ClickGame extends baseGame {
+public class ClickGame extends BaseGame {
 // variablle
   DConsole dc;
   private Player player1;

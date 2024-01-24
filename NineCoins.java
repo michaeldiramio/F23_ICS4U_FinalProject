@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.awt.*;
 
-public class NineCoins extends baseGame {
+public class NineCoins extends BaseGame {
   // variablle
   DConsole dc;
   private Player player1;
