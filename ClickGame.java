@@ -47,7 +47,7 @@ public class ClickGame extends baseGame {
 
       dc.fillEllipse(225, 360, 50, 50);
       dc.fillEllipse(675, 360, 50, 50);
-      dc.drawString("Player Two Click Count" + player2count, 675, 300);
+      dc.drawString("Player Two Click Count " + player2count, 675, 300);
       dc.drawString("Player One Click Count " + player1count, 225, 300);
       dc.drawString("who ever can click the most wins player 1 click 1 player 2 click 0", 450, 100);
       // clcik points for each player
@@ -71,9 +71,16 @@ public class ClickGame extends baseGame {
     }
     //winner conditions
     if (player1count > player2count) {
+      dc.clear();
+      dc.drawString(("Player 1 won"), 450, 300);
+      dc.redraw();
+      dc.pause(1500);
       super.winner = 1;
-    }
-    if (player2count > player1count) {
+    } else if (player2count > player1count) {
+      dc.clear();
+      dc.drawString(("Player 2 won"), 450, 300);
+      dc.redraw();
+      dc.pause(1500);
       super.winner = 2;
     }
   }

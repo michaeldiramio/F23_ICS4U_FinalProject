@@ -82,8 +82,9 @@ public class SpeedWord extends baseGame {
         p1chr = RNG.nextInt(3);
         p2chr = RNG.nextInt(3) + 3;
         dc.drawString(("Be the first one to hold down all of the letters of your word."), 450, 200);
-         dc.drawString(("Best of 3"), 450, 300);
-        dc.drawString(("When ready to play, press 'b'"), 450, 400);
+        dc.drawString(("If both are holding and nothing happens, start mashing!"), 450, 280);
+         dc.drawString(("Best of 3"), 450, 360);
+        dc.drawString(("When ready to play, press 'b'"), 450, 440);
         if(dc.isKeyPressed(66)){
           dc.clear();
           befplay = 1;

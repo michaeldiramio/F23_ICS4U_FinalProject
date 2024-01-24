@@ -1,9 +1,13 @@
 import DLibX.DConsole;
+import java.io.File;
 import java.awt.Color;
 import java.awt.geom.AffineTransform;
-import java.util.*;
+import java.awt.*;
 import java.util.Scanner;
 import java.util.Random;
+import java.io.PrintStream;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class DragRace extends baseGame{
 
@@ -18,6 +22,14 @@ public class DragRace extends baseGame{
  }
   
   public void run() {
+    //fonts
+    String fonts[] =   GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+
+    for (int i = 0; i < fonts.length; i++) {
+      System.out.println(fonts[i]);
+    }
+    dc.setFont(new Font("Dialog", Font.ITALIC, 20));
+    
     while(true) {
       this.dc.clear();
 
@@ -63,12 +75,20 @@ public class DragRace extends baseGame{
 
       //Winner
       if (p1.getX() >= 835){
+        dc.clear();
+        dc.drawString(("Player 2 won!"), 450, 300);
+        dc.redraw();
+        dc.pause(2000);
         super.winner = 1;
-        System.out.println("Player " + super.winner + " wins!");
+        //System.out.println("Player " + super.winner + " wins!");
         break;
       } else if (p2.getX() >= 835){
+        dc.clear();
+        dc.drawString(("Player 1 won!"), 450, 300);
+        dc.redraw();
+        dc.pause(2000);
         super.winner = 2;
-        System.out.println("Player " + super.winner + " wins!");
+        //System.out.println("Player " + super.winner + " wins!");
         break;
       }
 
