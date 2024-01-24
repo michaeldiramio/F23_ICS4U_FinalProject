@@ -112,8 +112,12 @@ public class Tag extends baseGame {
       double radiusSum = ballwidth; // assuming both ellipses have the same radius
 
       if (distance < radiusSum) {
+        dc.clear();
+        dc.drawString(("Player 1 won"), 450, 300);
+        dc.redraw();
+        dc.pause(2000);
         isTagged = true;
-        this.winner = 1; 
+        super.winner = 1; 
       }
 
       // Draw updated state
@@ -122,7 +126,11 @@ public class Tag extends baseGame {
 
       elapsedTime = System.currentTimeMillis() - startTime;
       if (elapsedTime >= 10000) { // 10000 milliseconds (10 seconds) as an example
-        this.winner = 1; 
+        dc.clear();
+        dc.drawString(("Player 2 won"), 450, 300);
+        dc.redraw();
+        dc.pause(2000);
+        super.winner = 2; 
         isTagged = true; // set isTagged to true after 5 seconds
       } 
     }

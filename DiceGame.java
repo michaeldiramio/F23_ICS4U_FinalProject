@@ -130,32 +130,40 @@ public class DiceGame extends baseGame {
 					dc.setPaint(Color.BLACK);
 					
 					if(p1Count == random){//code for who wins
+            dc.pause(1500);
+            dc.clear();
 						super.winner = 1;
-						dc.drawString("Player One Wins", 450 , 200);
+						dc.drawString("Player One Wins", 450 , 300);
 						dc.redraw();
-						dc.pause(5000);
+						dc.pause(2000);
 						start = false;
 						playing = false;
 					} else if (p2Count == random){
-						super.winner = 2;
-						dc.drawString("Player Two Wins", 450, 200);
-						dc.redraw();
-						dc.pause(5000);
+            dc.pause(1500);
+            dc.clear();
+            super.winner = 2;
+            dc.drawString("Player Two Wins", 450 , 300);
+            dc.redraw();
+            dc.pause(2000);
 						start = false;
 						playing = false;
 					} else {
 						if(p1Count > p2Count){
-							super.winner = 2;
-							dc.drawString("Player Two Wins", 450, 200);
-							dc.redraw();
-							dc.pause(5000);
+              dc.pause(1500);
+              dc.clear();
+              super.winner = 2;
+              dc.drawString("Player Two Wins", 450 , 300);
+              dc.redraw();
+              dc.pause(2000);
 							start = false;
 							playing = false;
 						} else if (p1Count < p2Count){
-							super.winner = 1;
-							dc.drawString("Player One Wins", 450, 200);
-							dc.redraw();
-							dc.pause(5000);
+              dc.pause(1500);
+              dc.clear();
+              super.winner = 1;
+              dc.drawString("Player One Wins", 450 , 300);
+              dc.redraw();
+              dc.pause(2000);
 							start = false;
 							playing = false;
 						}
