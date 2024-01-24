@@ -46,9 +46,18 @@ public class FlappyBirdGame extends BaseGame {
     for (int run = 1; run <= 5; run++) {
       System.out.println("Run " + run);
       boolean player1Won = runRound();
-      if (player1Won) {
+      if (player1Won) {// text font setting
+        dc.clear();
+        dc.setFont(new Font("Dialog", Font.BOLD, 30));
+        dc.drawString("This round won Player 1", 450, 250);
+        dc.redraw();
+        dc.pause(2500);
         player1Wins++;
-      } else {
+      } else {dc.clear();
+        dc.setFont(new Font("Dialog", Font.BOLD, 30));
+        dc.drawString("This round won Player 2", 450, 250);
+        dc.redraw();
+        dc.pause(2500);
         player2Wins++;
       }
     }
@@ -82,7 +91,7 @@ public class FlappyBirdGame extends BaseGame {
     int gapHeight = 300;
     int bird1Radius = 20;
     int bird2Radius = 20;
-    int obstacleSpeed = 6; // Adjust obstacle speed
+    int obstacleSpeed = 6;
 
     // text font setting
     dc.setFont(new Font("Dialog", Font.BOLD, 30));
@@ -117,11 +126,11 @@ public class FlappyBirdGame extends BaseGame {
         playing = false; // Game over if bird2 hits top or bottom
       }
 
-      if ((obstacleX < bird1Radius && obstacleX + obstacleWidth > 0)) {
+      if (obstacleX < bird1Radius && bird1Y < 450) {
         playing = false;
       }
 
-      if ((obstacleX < bird2Radius && obstacleX + obstacleWidth > 0)) {
+      if (obstacleX < bird2Radius && bird2Y > 150) {
         playing = false;
       }
 
@@ -136,6 +145,14 @@ public class FlappyBirdGame extends BaseGame {
       dc.fillRect(obstacleX, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
       dc.fillRect(obstacleX + 500, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
       dc.fillRect(obstacleX + 500, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
+      dc.fillRect(obstacleX + 1000, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
+      dc.fillRect(obstacleX + 1000, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
+      dc.fillRect(obstacleX + 1500, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
+      dc.fillRect(obstacleX + 1500, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
+      dc.fillRect(obstacleX + 2000, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
+      dc.fillRect(obstacleX + 2000, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
+      dc.fillRect(obstacleX + 2500, 0, obstacleWidth, obstacleHeight); // Upper part of obstacle
+      dc.fillRect(obstacleX + 2500, obstacleHeight + gapHeight, obstacleWidth, dc.getHeight()); // Lower part of obstacle
 
       // Update display
       dc.redraw();
