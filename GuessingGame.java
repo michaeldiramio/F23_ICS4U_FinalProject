@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.Random;
 import DLibX.DConsole;
 
-public class GuessingGame extends baseGame {
+public class GuessingGame extends BaseGame {
   DConsole dc;
   private Player p1;
   private Player p2;

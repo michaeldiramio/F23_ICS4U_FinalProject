@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.util.Random;
 
-public class DontGrabOrbGame extends baseGame {
+public class DontGrabOrbGame extends BaseGame {
     DConsole dc;
     private Player player1;
     private Player player2;

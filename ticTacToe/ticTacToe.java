@@ -2,7 +2,7 @@ import DLibX.DConsole;
 import java.awt.*;
 import java.util.*;
 
-public class ticTacToe extends baseGame {
+public class ticTacToe extends BaseGame {
 
   DConsole dc;
   Random randGen;

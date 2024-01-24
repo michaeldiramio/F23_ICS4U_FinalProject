@@ -8,7 +8,7 @@ import java.util.Random;
 import java.io.PrintStream;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-public class GrabOrb extends baseGame {
+public class GrabOrb extends BaseGame {
   
   DConsole dc;
   private Player player1;

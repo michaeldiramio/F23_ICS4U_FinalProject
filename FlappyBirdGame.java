@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 
-public class FlappyBirdGame extends baseGame {
+public class FlappyBirdGame extends BaseGame {
   // dc with players
   private DConsole dc;
   private Player p1;

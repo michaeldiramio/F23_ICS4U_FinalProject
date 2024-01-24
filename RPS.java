@@ -8,7 +8,7 @@ import java.util.Random;
 import java.io.PrintStream;
 
 //Artem's RPS
-public class RPS extends baseGame {
+public class RPS extends BaseGame {
   DConsole dc;
   private Player player1;
   private Player player2;
