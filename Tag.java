@@ -11,8 +11,8 @@ public class Tag extends baseGame {
   private Player player2;
   int centerX = 450;
   int centerY = 300;
-  int playerAScore = 0;
-  int playerLScore = 0;
+  int player1Score = 0;
+  int player2Score = 0;
   int player1Y = 300; 
   int player1X = 150;
   int player2Y = 300;
@@ -33,6 +33,8 @@ public class Tag extends baseGame {
     this.player2.setX(0);
     this.player1.setY(0);
     this.player2.setY(0);
+    player1Score = 0;
+    player2Score = 0;
     this.run(); 
   }
   public void run() {
@@ -42,26 +44,26 @@ public class Tag extends baseGame {
     long elapsedTime;
     this.dc.setOrigin(DConsole.ORIGIN_CENTER);// Dc console 
     while (!isTagged) {
-      dc.clear();
+      this.dc.clear();
       // DRAWING CODE GOES HERE 
-      dc.setPaint(Color.BLUE);
-      dc.fillEllipse(player1X, player1Y, ballwidth, ballwidth);
-      dc.drawString("Player 1 - TAGGER", 150, 20);
+      this.dc.setPaint(Color.BLUE);
+      this.dc.fillEllipse(player1X, player1Y, ballwidth, ballwidth);
+      this.dc.drawString("Player 1 - TAGGER", 150, 20);
       // player 2 
-      dc.setPaint(Color.RED);
-      dc.fillEllipse(player2X , player2Y, ballwidth, ballwidth);
-      dc.drawString("Player 2 - TAG", 750, 20);
+      this.dc.setPaint(Color.RED);
+      this.dc.fillEllipse(player2X , player2Y, ballwidth, ballwidth);
+      this.dc.drawString("Player 2 - TAG", 750, 20);
 
 
       // ANIMATION CODE GOES HERE
       // player one comends 
       if (dc.isKeyPressed('w')) {
         player1Y = player1Y - 4;  // move to left
-      } else if (dc.isKeyPressed('s')) {
+      } else if (this.dc.isKeyPressed('s')) {
         player1Y = player1Y + 4; // move to right
-      } else if (dc.isKeyPressed('d')) {
+      } else if (this.dc.isKeyPressed('d')) {
         player1X = player1X + 4; // move to right)
-      } else if (dc.isKeyPressed('a')) {
+      } else if (this.dc.isKeyPressed('a')) {
         player1X = player1X - 4; // move to right)
       }
       if (player1X == 50) {
@@ -71,7 +73,7 @@ public class Tag extends baseGame {
         } 
 
       // player 2 comends 
-      if (dc.isKeyPressed(38)) {
+      if (this.dc.isKeyPressed(38)) {
         player2Y = player2Y - 4; // move to right
       } else if (dc.isKeyPressed(40)) {
         player2Y = player2Y + 4; // move to right
@@ -117,12 +119,12 @@ public class Tag extends baseGame {
       }
 
       // Draw updated state
-      dc.redraw();
-      dc.pause(20); // Adjust the speed of the game by changing the pause duration
+      this.dc.redraw();
+      this.dc.pause(20); // Adjust the speed of the game by changing the pause duration
 
       elapsedTime = System.currentTimeMillis() - startTime;
       if (elapsedTime >= 10000) { // 10000 milliseconds (10 seconds) as an example
-        this.winner = 1; 
+        this.winner = 2; 
         isTagged = true; // set isTagged to true after 5 seconds
       } 
     }
